@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>堅占星 Kin Astro — 二十一體系占星排盤平台</title>
+  <meta name="description" content="堅占星 Kin Astro：融合二十一種中外占星體系的線上排盤平台，支援 AI 智慧分析、中英雙語介面、免費開源。" />
+  <meta name="keywords" content="占星,astrology,排盤,七政四餘,紫微斗數,西洋占星,印度占星,Vedic,Kabbalah,堅占星,kinastro" />
+  <meta property="og:title" content="堅占星 Kin Astro — 二十一體系占星排盤平台" />
+  <meta property="og:description" content="融合二十一種中外占星體系的線上排盤平台，支援 AI 智慧分析。" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://kinastro.streamlit.app" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:         #06060f;
+      --surface:    #0f1023;
+      --surface2:   #161835;
+      --border:     #1e2048;
+      --accent:     #7c6aff;
+      --accent-lt:  #a899ff;
+      --gold:       #f0c040;
+      --gold-lt:    #ffe580;
+      --pink:       #ff6b9d;
+      --cyan:       #00d4ff;
+      --text:       #e8e6f0;
+      --muted:      #8888aa;
+      --card-glow:  rgba(124,106,255,.08);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Noto Serif TC', 'Inter', 'Georgia', serif;
+      line-height: 1.8;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── scrollbar ── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
+
+    /* ── navigation ── */
+    .navbar {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 1000;
+      padding: .85rem 2rem;
+      display: flex; align-items: center;
+      background: rgba(6,6,15,.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(124,106,255,.15);
+      transition: background .3s;
+    }
+    .nav-logo {
+      font-size: 1.15rem; font-weight: 900;
+      background: linear-gradient(135deg, var(--gold), var(--accent-lt));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-decoration: none; letter-spacing: .05em;
+    }
+    .nav-links { margin-left: auto; display: flex; gap: 1.8rem; align-items: center; }
+    .nav-links a {
+      color: var(--muted); text-decoration: none; font-size: .85rem;
+      transition: color .2s; font-family: 'Inter', sans-serif;
+    }
+    .nav-links a:hover { color: var(--accent-lt); }
+    .nav-cta {
+      background: linear-gradient(135deg, var(--accent), #5b4ed4);
+      color: #fff !important; padding: .4rem 1.2rem;
+      border-radius: 20px; font-weight: 600; font-size: .82rem !important;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 4px 20px rgba(124,106,255,.4); }
+
+    /* ── hero ── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center;
+      padding: 6rem 2rem 4rem;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 30% 20%, rgba(124,106,255,.15) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 40% at 70% 60%, rgba(255,107,157,.08) 0%, transparent 50%),
+        radial-gradient(ellipse 40% 30% at 50% 80%, rgba(0,212,255,.06) 0%, transparent 50%);
+      animation: heroGlow 8s ease-in-out infinite alternate;
+    }
+    @keyframes heroGlow {
+      0% { opacity: .6; }
+      100% { opacity: 1; }
+    }
+    .hero-stars {
+      position: absolute; inset: 0;
+      background-image:
+        radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,.4), transparent),
+        radial-gradient(1px 1px at 30% 60%, rgba(255,255,255,.3), transparent),
+        radial-gradient(1.5px 1.5px at 50% 10%, rgba(255,255,255,.5), transparent),
+        radial-gradient(1px 1px at 70% 40%, rgba(255,255,255,.3), transparent),
+        radial-gradient(1px 1px at 90% 80%, rgba(255,255,255,.4), transparent),
+        radial-gradient(1px 1px at 20% 90%, rgba(255,255,255,.2), transparent),
+        radial-gradient(1.5px 1.5px at 80% 15%, rgba(255,255,255,.5), transparent),
+        radial-gradient(1px 1px at 45% 75%, rgba(255,255,255,.3), transparent),
+        radial-gradient(1px 1px at 65% 90%, rgba(255,255,255,.2), transparent),
+        radial-gradient(1px 1px at 15% 50%, rgba(255,255,255,.35), transparent);
+      animation: twinkle 4s ease-in-out infinite alternate;
+    }
+    @keyframes twinkle {
+      0% { opacity: .5; }
+      100% { opacity: 1; }
+    }
+    .hero-content { position: relative; z-index: 1; max-width: 800px; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: rgba(124,106,255,.12); border: 1px solid rgba(124,106,255,.3);
+      border-radius: 20px; padding: .35rem 1rem; margin-bottom: 2rem;
+      font-size: .8rem; color: var(--accent-lt);
+      font-family: 'Inter', sans-serif;
+    }
+    .hero-badge .pulse {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: #00ff88; animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: .4; }
+    }
+    .hero h1 {
+      font-size: clamp(2.5rem, 6vw, 4.2rem);
+      font-weight: 900; line-height: 1.2;
+      background: linear-gradient(135deg, #fff 0%, var(--gold-lt) 40%, var(--accent-lt) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1rem;
+    }
+    .hero .subtitle {
+      font-size: clamp(.95rem, 2vw, 1.15rem);
+      color: var(--muted); max-width: 600px; margin: 0 auto 2.5rem;
+      line-height: 1.8;
+    }
+    .hero-buttons {
+      display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+    }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: linear-gradient(135deg, var(--accent), #5b4ed4);
+      color: #fff; padding: .75rem 2rem;
+      border-radius: 28px; text-decoration: none;
+      font-size: .95rem; font-weight: 600;
+      transition: transform .2s, box-shadow .2s;
+      font-family: 'Inter', sans-serif;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(124,106,255,.4);
+    }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: transparent;
+      color: var(--text); padding: .75rem 2rem;
+      border: 1px solid var(--border);
+      border-radius: 28px; text-decoration: none;
+      font-size: .95rem; font-weight: 500;
+      transition: border-color .2s, color .2s;
+      font-family: 'Inter', sans-serif;
+    }
+    .btn-secondary:hover { border-color: var(--accent); color: var(--accent-lt); }
+
+    /* ── stats bar ── */
+    .stats-bar {
+      display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap;
+      margin-top: 3.5rem; position: relative; z-index: 1;
+    }
+    .stat-item { text-align: center; }
+    .stat-num {
+      font-size: clamp(1.8rem, 3vw, 2.4rem); font-weight: 900;
+      background: linear-gradient(135deg, var(--gold), var(--accent-lt));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .stat-label {
+      font-size: .8rem; color: var(--muted); margin-top: .2rem;
+      font-family: 'Inter', sans-serif;
+    }
+
+    /* ── sections ── */
+    section { padding: 5rem 2rem; }
+    .section-header {
+      text-align: center; max-width: 700px; margin: 0 auto 3rem;
+    }
+    .section-tag {
+      display: inline-block;
+      font-size: .75rem; font-weight: 600; letter-spacing: .15em;
+      color: var(--accent-lt); text-transform: uppercase;
+      margin-bottom: .75rem;
+      font-family: 'Inter', sans-serif;
+    }
+    .section-header h2 {
+      font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+      font-weight: 900; margin-bottom: .75rem;
+      color: #fff;
+    }
+    .section-header p {
+      color: var(--muted); font-size: .95rem;
+    }
+
+    /* ── features grid ── */
+    .features { background: var(--surface); }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+      max-width: 1200px; margin: 0 auto;
+    }
+    .feature-card {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem 1.5rem;
+      transition: border-color .3s, transform .3s, box-shadow .3s;
+    }
+    .feature-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(124,106,255,.12);
+    }
+    .feature-icon {
+      font-size: 2rem; margin-bottom: 1rem;
+      display: inline-block;
+    }
+    .feature-card h3 {
+      font-size: 1.05rem; font-weight: 700;
+      margin-bottom: .5rem; color: #fff;
+    }
+    .feature-card p {
+      font-size: .85rem; color: var(--muted); line-height: 1.7;
+    }
+
+    /* ── systems showcase ── */
+    .systems { max-width: 1200px; margin: 0 auto; }
+    .systems-tabs {
+      display: flex; gap: .5rem; justify-content: center;
+      flex-wrap: wrap; margin-bottom: 2rem;
+    }
+    .sys-tab {
+      background: transparent; border: 1px solid var(--border);
+      color: var(--muted); padding: .4rem 1rem;
+      border-radius: 20px; cursor: pointer; font-size: .8rem;
+      font-family: 'Inter', 'Noto Serif TC', sans-serif;
+      transition: all .2s;
+    }
+    .sys-tab:hover, .sys-tab.active {
+      border-color: var(--accent); color: var(--accent-lt);
+      background: rgba(124,106,255,.08);
+    }
+
+    .systems-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.2rem;
+    }
+    .system-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.5rem;
+      display: flex; flex-direction: column; gap: .5rem;
+      transition: border-color .3s, transform .3s, box-shadow .3s;
+      position: relative; overflow: hidden;
+    }
+    .system-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--pink), var(--gold));
+      opacity: 0; transition: opacity .3s;
+    }
+    .system-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px var(--card-glow);
+    }
+    .system-card:hover::before { opacity: 1; }
+    .system-card-head {
+      display: flex; align-items: flex-start; gap: .75rem;
+    }
+    .sys-icon {
+      font-size: 1.8rem; line-height: 1; flex-shrink: 0;
+      width: 44px; height: 44px;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(124,106,255,.08);
+      border-radius: 10px;
+    }
+    .sys-name {
+      font-size: .95rem; font-weight: 700; color: #fff;
+    }
+    .sys-sub {
+      font-size: .78rem; color: var(--accent-lt);
+      font-family: 'Inter', sans-serif;
+    }
+    .sys-desc {
+      font-size: .82rem; color: var(--muted); flex: 1;
+      line-height: 1.7;
+    }
+    .sys-tags {
+      display: flex; flex-wrap: wrap; gap: .4rem; margin-top: auto;
+    }
+    .sys-tags span {
+      font-size: .7rem; padding: .15rem .55rem;
+      border-radius: 10px; font-family: 'Inter', sans-serif;
+    }
+    .tag-zodiac {
+      background: rgba(0,212,255,.1); color: var(--cyan);
+      border: 1px solid rgba(0,212,255,.2);
+    }
+    .tag-feature {
+      background: rgba(240,192,64,.08); color: var(--gold);
+      border: 1px solid rgba(240,192,64,.15);
+    }
+
+    /* ── demo / CTA section ── */
+    .demo-section {
+      background: var(--surface);
+      position: relative; overflow: hidden;
+    }
+    .demo-section::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 50% 50% at 20% 50%, rgba(124,106,255,.08), transparent),
+        radial-gradient(ellipse 50% 50% at 80% 50%, rgba(255,107,157,.06), transparent);
+    }
+    .demo-inner {
+      max-width: 900px; margin: 0 auto;
+      text-align: center; position: relative; z-index: 1;
+    }
+    .demo-inner h2 {
+      font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+      font-weight: 900; margin-bottom: 1rem; color: #fff;
+    }
+    .demo-inner p {
+      color: var(--muted); font-size: 1rem; margin-bottom: 2.5rem;
+      max-width: 600px; margin-inline: auto;
+    }
+    .demo-buttons {
+      display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+    }
+
+    /* ── tech stack ── */
+    .tech-stack {
+      max-width: 900px; margin: 0 auto;
+    }
+    .tech-grid {
+      display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center;
+    }
+    .tech-item {
+      display: flex; align-items: center; gap: .6rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px; padding: .6rem 1.2rem;
+      font-size: .85rem; color: var(--text);
+      font-family: 'Inter', sans-serif;
+      transition: border-color .2s;
+    }
+    .tech-item:hover { border-color: var(--accent); }
+    .tech-item img { height: 20px; width: 20px; }
+
+    /* ── footer ── */
+    .footer {
+      border-top: 1px solid var(--border);
+      text-align: center; padding: 3rem 2rem;
+    }
+    .footer-logo {
+      font-size: 1.2rem; font-weight: 900;
+      background: linear-gradient(135deg, var(--gold), var(--accent-lt));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1rem;
+    }
+    .footer p { color: var(--muted); font-size: .82rem; margin-bottom: .5rem; }
+    .footer a { color: var(--accent-lt); text-decoration: none; }
+    .footer a:hover { text-decoration: underline; }
+    .footer-links {
+      display: flex; gap: 1.5rem; justify-content: center;
+      margin-top: 1rem; flex-wrap: wrap;
+    }
+    .footer-links a {
+      color: var(--muted); font-size: .8rem; text-decoration: none;
+      transition: color .2s; font-family: 'Inter', sans-serif;
+    }
+    .footer-links a:hover { color: var(--accent-lt); }
+
+    /* ── responsive ── */
+    @media (max-width: 768px) {
+      .navbar { padding: .7rem 1rem; }
+      .nav-links { gap: 1rem; }
+      .nav-links a:not(.nav-cta) { display: none; }
+      .hero { padding: 5rem 1.2rem 3rem; min-height: auto; }
+      .hero h1 { font-size: 2rem; }
+      section { padding: 3rem 1rem; }
+      .stats-bar { gap: 1.5rem; }
+      .features-grid { grid-template-columns: 1fr; }
+      .systems-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      .hero-buttons { flex-direction: column; align-items: center; }
+      .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
+    }
+
+    /* ── mobile nav toggle ── */
+    .nav-toggle {
+      display: none;
+      background: none; border: none; color: var(--text);
+      font-size: 1.5rem; cursor: pointer;
+      margin-left: auto;
+    }
+    @media (max-width: 768px) {
+      .nav-toggle { display: block; }
+      .nav-links { display: none; }
+      .nav-links.open {
+        display: flex; flex-direction: column;
+        position: absolute; top: 100%; left: 0; right: 0;
+        background: rgba(6,6,15,.97);
+        padding: 1rem 2rem; gap: 1rem;
+        border-bottom: 1px solid var(--border);
+      }
+      .nav-links.open a:not(.nav-cta) { display: block; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Navigation ── -->
+<nav class="navbar">
+  <a class="nav-logo" href="#">⭐ 堅占星 Kin Astro</a>
+  <button class="nav-toggle" aria-label="選單" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
+  <div class="nav-links">
+    <a href="#features">特色功能</a>
+    <a href="#systems">占星體系</a>
+    <a href="#tech">技術棧</a>
+    <a href="https://github.com/kentang2017/kinastro" target="_blank" rel="noopener">GitHub</a>
+    <a href="https://kentang2017.github.io/" target="_blank" rel="noopener">所有專案</a>
+    <a class="nav-cta" href="https://kinastro.streamlit.app" target="_blank" rel="noopener">🚀 立即使用</a>
+  </div>
+</nav>
+
+<!-- ── Hero ── -->
+<section class="hero">
+  <div class="hero-stars"></div>
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span class="pulse"></span>
+      線上免費使用 · Open Source · MIT License
+    </div>
+    <h1>二十一體系占星排盤平台</h1>
+    <p class="subtitle">
+      從七政四餘到西洋占星、從紫微斗數到印度 Jyotish、從瑪雅曆法到巴比倫星表——<br/>
+      堅占星將全球二十一種占星體系融合為一，讓千年星學智慧觸手可及。
+    </p>
+    <div class="hero-buttons">
+      <a class="btn-primary" href="https://kinastro.streamlit.app" target="_blank" rel="noopener">
+        🔮 開始排盤 Start Charting
+      </a>
+      <a class="btn-secondary" href="https://github.com/kentang2017/kinastro" target="_blank" rel="noopener">
+        ⭐ GitHub 原始碼
+      </a>
+    </div>
+    <div class="stats-bar">
+      <div class="stat-item">
+        <div class="stat-num">21</div>
+        <div class="stat-label">占星體系 Systems</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">40+</div>
+        <div class="stat-label">子功能分頁 Sub-tabs</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">AI</div>
+        <div class="stat-label">智慧分析 Analysis</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">中英</div>
+        <div class="stat-label">雙語介面 Bilingual</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Features ── -->
+<section class="features" id="features">
+  <div class="section-header">
+    <span class="section-tag">✨ 特色亮點 Highlights</span>
+    <h2>為什麼選擇堅占星？</h2>
+    <p>一站式排盤平台，集合古今中外占星智慧</p>
+  </div>
+  <div class="features-grid">
+
+    <div class="feature-card">
+      <span class="feature-icon">🔮</span>
+      <h3>二十一體系合一</h3>
+      <p>在同一個介面中切換中國七政四餘、紫微斗數、西洋占星、印度 Vedic、瑪雅曆法等二十一種占星體系，無需來回切換工具。</p>
+    </div>
+
+    <div class="feature-card">
+      <span class="feature-icon">🪐</span>
+      <h3>精密天文計算</h3>
+      <p>使用瑞士星曆表 (Swiss Ephemeris) pyswisseph 進行高精度天文運算，確保行星位置精確無誤。</p>
+    </div>
+
+    <div class="feature-card">
+      <span class="feature-icon">🤖</span>
+      <h3>AI 智慧分析</h3>
+      <p>整合 Cerebras AI 人工智慧，一鍵生成命盤深度解讀報告，助你快速理解星象含義。</p>
+    </div>
+
+    <div class="feature-card">
+      <span class="feature-icon">🌏</span>
+      <h3>全球化城市支援</h3>
+      <p>內建全球多個主要城市座標，亦支援自訂經緯度，隨時隨地為任何地點排盤。</p>
+    </div>
+
+    <div class="feature-card">
+      <span class="feature-icon">🌐</span>
+      <h3>中英雙語介面</h3>
+      <p>完整的中文與英文雙語支援，無論你的母語是什麼，都能輕鬆使用。</p>
+    </div>
+
+    <div class="feature-card">
+      <span class="feature-icon">📱</span>
+      <h3>響應式設計</h3>
+      <p>適配桌面與移動設備，手機、平板、電腦皆可流暢使用，隨時查閱星盤。</p>
+    </div>
+
+    <div class="feature-card">
+      <span class="feature-icon">🔌</span>
+      <h3>REST API 後端</h3>
+      <p>FastAPI 後端提供所有體系的 JSON 計算 API，可獨立部署，方便開發者整合。</p>
+    </div>
+
+    <div class="feature-card">
+      <span class="feature-icon">💾</span>
+      <h3>儲存與匯出</h3>
+      <p>儲存、載入排盤參數，並支援 TXT、CSV、PDF 三種格式匯出，輕鬆保存分析結果。</p>
+    </div>
+
+    <div class="feature-card">
+      <span class="feature-icon">🆓</span>
+      <h3>開源免費</h3>
+      <p>MIT 授權，完整原始碼公開於 GitHub，任何人都可以自由使用、修改與擴展。</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── Systems Showcase ── -->
+<section id="systems">
+  <div class="section-header">
+    <span class="section-tag">🧭 體系總覽 Systems at a Glance</span>
+    <h2>二十一種占星體系</h2>
+    <p>熱門 → 中國 → 西方 → 亞洲 → 中東 → 古代文明 → 美索不達米亞</p>
+  </div>
+
+  <div class="systems-tabs">
+    <button class="sys-tab active" onclick="filterSystems('all', this)">全部</button>
+    <button class="sys-tab" onclick="filterSystems('chinese', this)">中國</button>
+    <button class="sys-tab" onclick="filterSystems('western', this)">西方</button>
+    <button class="sys-tab" onclick="filterSystems('asian', this)">亞洲</button>
+    <button class="sys-tab" onclick="filterSystems('mideast', this)">中東</button>
+    <button class="sys-tab" onclick="filterSystems('ancient', this)">古代文明</button>
+  </div>
+
+  <div class="systems-grid" id="systemsGrid">
+
+    <!-- Chinese -->
+    <div class="system-card" data-cat="chinese">
+      <div class="system-card-head">
+        <div class="sys-icon">🀄</div>
+        <div>
+          <div class="sys-name">七政四餘</div>
+          <div class="sys-sub">Chinese Traditional Astrology</div>
+        </div>
+      </div>
+      <p class="sys-desc">中國千年傳承的占星術，以恆星黃道為基礎。含本命盤、神煞、年限大運、流時對盤、張果星宗（1060 條星宮語句、128 格局）、擇日工具。</p>
+      <div class="sys-tags">
+        <span class="tag-zodiac">恆星黃道</span>
+        <span class="tag-feature">六個子分頁</span>
+      </div>
+    </div>
+
+    <div class="system-card" data-cat="chinese">
+      <div class="system-card-head">
+        <div class="sys-icon">🌟</div>
+        <div>
+          <div class="sys-name">紫微斗數</div>
+          <div class="sys-sub">Zi Wei Dou Shu</div>
+        </div>
+      </div>
+      <p class="sys-desc">中國傳統命理學最重要的排盤體系之一。十四主星、十二宮位、五行局，以農曆生辰排盤。</p>
+      <div class="sys-tags">
+        <span class="tag-zodiac">農曆</span>
+        <span class="tag-feature">十四主星</span>
+      </div>
+    </div>
+
+    <div class="system-card" data-cat="chinese">
+      <div class="system-card-head">
+        <div class="sys-icon">🌠</div>
+        <div>
+          <div class="sys-name">策天飛星紫微斗數</div>
+          <div class="sys-sub">Ce Tian 18 Flying Stars</div>
+        </div>
+      </div>
+      <p class="sys-desc">紫微斗數的古法前身，源自明代。十八飛星（十一正曜 + 七副曜）、每宮必有正副曜、飛星四化、單宮獨斷。</p>
+      <div class="sys-tags">
+        <span class="tag-zodiac">農曆</span>
+        <span class="tag-feature">十八飛星</span>
+      </div>
+    </div>
+
+    <div class="system-card" data-cat="chinese">
+      <div class="system-card-head">
+        <div class="sys-icon">🐦‍⬛</div>
+        <div>
+          <div class="sys-name">萬化仙禽</div>
+          <div class="sys-sub">WanHua XianQin</div>
+        </div>
+      </div>
+      <p class="sys-desc">二十八宿禽星排盤，十二宮位、吞啗合戰、相胎賦、貴賤格。</p>
+      <div class="sys-tags">
+        <span class="tag-zodiac">農曆</span>
+        <span class="tag-feature">二十八宿</span>
+      </div>
+    </div>
+
+    <!-- Western -->
+    <div class="system-card" data-cat="western">
+      <div class="system-card-head">
+        <div class="sys-icon">🌍</div>
+        <div>
+          <div class="sys-name">西洋占星</div>
+          <div class="sys-sub">Western Astrology</div>
+        </div>
+      </div>
+      <p class="sys-desc">全球最流行的占星體系。本命盤輪圖、行星過運、太陽回歸、合盤比較、Ptolemy 尊貴、恆星合相、小行星。</p>
+      <div class="sys-tags">
+        <span class="tag-zodiac">回歸黃道</span>
+        <span class="tag-feature">五個子分頁</span>
+      </div>
+    </div>
+
+    <div class="system-card" data-cat="western">
+      <div class="system-card-head">
+        <div class="sys-icon">🏺</div>
+        <div>
+          <div class="sys-name">希臘占星</div>
+          <div class="sys-sub">Hellenistic Astrology</div>
+        </div>
+      </div>
+      <p class="sys-desc">Greek Lots（Fortune、Spirit 等）、Egyptian Bounds、Annual Profections、Zodiacal Releasing、百論。</p>
+      <div class="sys-tags">
+        <span class="tag-zodiac">回歸黃道</span>
+        <span class="tag-feature">Greek Lots</span>
+      </div>
+    </div>
+
+    <div class="system-card" data-cat="western">
+      <div class="system-card-head">
+        <div class="sys-icon">✡</div>
+        <div>
+          <div class="sys-name">卡巴拉占星</div>
+          <div class="sys-sub">Kabbalah Astrology</div>
+        </div>
+      </div>
+      <p class="sys-desc">結合猶太神祕主義與占星術。生命之樹、二十二希伯來字母、塔羅大牌對應。</p>
+      <div class="sys-tags">
+        <span class="tag-zodiac">回歸黃道</span>
+        <span class="tag-feature">生命之樹</span>
+      </div>
+    </div>
+
+    <!-- Asian -->
+    <div class="system-card" data-cat="asian">
+      <div class="system-card-head">
+        <div class="sys-icon">🙏</div>
+        <div>
+          <div class="sys-name">印度占星 Jyotish</div>
+          <div class="sys-sub">Vedic Astrology</div>
+        </div>
+      </div>
+      <p class="sys-desc">古老印度占星體系。星座盤（南印度/北印度）、Vimshottari 大運、Ashtakavarga、Yogas、BPHS、16 Varga 分盤。</p>
+      <div class="sys-tags">
+        <span class="tag-zodiac">恆星黃道</span>
+        <span class="tag-feature">六個子分頁</span>
+      </div>
+    </div>
+
+    <div class="system-card" data-cat="asian">
+      <div class="system-card-head">
+        <div class="sys-icon">🔱</div>
+        <div>
+          <div class="sys-name">納迪占星</div>
+          <div class="sys-sub">Nadi Astrology</div>
+        </div>
+      </div>
+      <p class="sys-desc">三大脈輪、27 星宿、納迪宮分，印度古老預言系統。</p>
+      <div class="sys-tags">
+        <span class="tag-zodiac">恆星黃道</span>
+        <span class="tag-feature">27 星宿</span>
+      </div>
+    </div>
+
+    <div class="system-card" data-cat="asian">
+      <div class="system-card-head">
+        <div class="sys-icon">🕉️</div>
+        <div>
+          <div class="sys-name">Jaimini 占星</div>
+          <div class="sys-sub">Jaimini Astrology</div>
+        </div>
+      </div>
+      <p class="sys-desc">Chara Karaka、Rashi Drishti、Argala、Arudha Pada、Chara Dasha。</p>
+      <div class="sys-tags">
+        <span class="tag-zodiac">恆星黃道</span>
+        <span class="tag-feature">Chara Dasha</span>
+      </div>
+    </div>
+
+    <div class="system-card" data-cat="asian">
+      <div class="system-card-head">
+        <div class="sys-icon">🈳</div>
+        <div>
+          <div class="sys-name">宿曜道</div>
+          <div class="sys-sub">Japanese Sukkayodo</div>
+        </div>
+      </div>
+      <p class="sys-desc">9 世紀由空海大師傳入日本。二十八宿、六曜、方盤排列。</p>
+      <div class="sys-tags">
+        <span class="tag-zodiac">恆星黃道</span>
+        <span class="tag-feature">六曜</span>
+      </div>
+    </div>
+
+    <div class="system-card" data-cat="asian">
+      <div class="system-card-head">
+        <div class="sys-icon">🐘</div>
+        <div>
+          <div class="sys-name">泰國占星</div>
+          <div class="sys-sub">Thai Astrology</div>
+        </div>
+      </div>
+      <p class="sys-desc">以印度 Jyotish 為基礎，融合泰國佛教文化。泰式方盤、九宮格、พรหมชาติ 命理。</p>
+      <div class="sys-tags">
+        <span class="tag-zodiac">恆星黃道</span>
+        <span class="tag-feature">九宮格</span>
+      </div>
+    </div>
+
+    <div class="system-card" data-cat="asian">
+      <div class="system-card-head">
+        <div class="sys-icon">🇲🇲</div>
+        <div>
+          <div class="sys-name">緬甸 Mahabote</div>
+          <div class="sys-sub">Myanmar Astrology</div>
+        </div>
+      </div>
+      <p class="sys-desc">緬甸獨特的星期制占星法。八方位、七宮、行星大運。</p>
+      <div class="sys-tags">
+        <span class="tag-zodiac">星期制</span>
+        <span class="tag-feature">八方位</span>
+      </div>
+    </div>
+
+    <div class="system-card" data-cat="asian">
+      <div class="system-card-head">
+        <div class="sys-icon">🇲🇳</div>
+        <div>
+          <div class="sys-name">祖爾海</div>
+          <div class="sys-sub">Mongolian Zurkhai</div>
+        </div>
+      </div>
+      <p class="sys-desc">蒙古傳統占星術。12 生肖、五行、擇吉。</p>
+      <div class="sys-tags">
+        <span class="tag-zodiac">藏曆</span>
+        <span class="tag-feature">擇吉</span>
+      </div>
+    </div>
+
+    <div class="system-card" data-cat="asian">
+      <div class="system-card-head">
+        <div class="sys-icon">🏔️</div>
+        <div>
+          <div class="sys-name">藏傳時輪金剛</div>
+          <div class="sys-sub">Tibetan Kalachakra</div>
+        </div>
+      </div>
+      <p class="sys-desc">Mewa 九宮、Parkha 八卦、五力系統、時輪金剛曼荼羅。</p>
+      <div class="sys-tags">
+        <span class="tag-zodiac">藏曆</span>
+        <span class="tag-feature">Mewa 九宮</span>
+      </div>
+    </div>
+
+    <!-- Middle East -->
+    <div class="system-card" data-cat="mideast">
+      <div class="system-card-head">
+        <div class="sys-icon">☪</div>
+        <div>
+          <div class="sys-name">阿拉伯占星</div>
+          <div class="sys-sub">Arabic Astrology</div>
+        </div>
+      </div>
+      <p class="sys-desc">源自中世紀伊斯蘭黃金時代。阿拉伯點、Picatrix 星體魔法、太陽知識大全、MS164 手稿。</p>
+      <div class="sys-tags">
+        <span class="tag-zodiac">回歸黃道</span>
+        <span class="tag-feature">五個子分頁</span>
+      </div>
+    </div>
+
+    <div class="system-card" data-cat="mideast">
+      <div class="system-card-head">
+        <div class="sys-icon">🕌</div>
+        <div>
+          <div class="sys-name">也門占星</div>
+          <div class="sys-sub">Yemeni / Rasulid</div>
+        </div>
+      </div>
+      <p class="sys-desc">南阿拉伯半島古老傳統。28 月宿護符魔法、Anwāʼ 天氣預兆、Firdaria 週期。</p>
+      <div class="sys-tags">
+        <span class="tag-zodiac">恆星黃道</span>
+        <span class="tag-feature">月宿護符</span>
+      </div>
+    </div>
+
+    <!-- Ancient -->
+    <div class="system-card" data-cat="ancient">
+      <div class="system-card-head">
+        <div class="sys-icon">🏺</div>
+        <div>
+          <div class="sys-name">瑪雅占星</div>
+          <div class="sys-sub">Maya Astrology</div>
+        </div>
+      </div>
+      <p class="sys-desc">瓜地馬拉瑪雅文明的曆法與占星。Tzolkin 神聖曆、Haab 民用曆、Long Count 長紀年。</p>
+      <div class="sys-tags">
+        <span class="tag-zodiac">瑪雅曆</span>
+        <span class="tag-feature">Tzolkin</span>
+      </div>
+    </div>
+
+    <div class="system-card" data-cat="ancient">
+      <div class="system-card-head">
+        <div class="sys-icon">🦅</div>
+        <div>
+          <div class="sys-name">阿茲特克占星</div>
+          <div class="sys-sub">Aztec Astrology</div>
+        </div>
+      </div>
+      <p class="sys-desc">阿茲特克文明曆法占星。Tonalpohualli 占卜曆、Trecena 13 天週期、守護神祇。</p>
+      <div class="sys-tags">
+        <span class="tag-zodiac">阿茲特克曆</span>
+        <span class="tag-feature">守護神祇</span>
+      </div>
+    </div>
+
+    <div class="system-card" data-cat="ancient">
+      <div class="system-card-head">
+        <div class="sys-icon">🏛️</div>
+        <div>
+          <div class="sys-name">古埃及十度區間</div>
+          <div class="sys-sub">Egyptian Decans</div>
+        </div>
+      </div>
+      <p class="sys-desc">36 Decans 十度區間、塔羅對應、Dendera 輪盤圖。</p>
+      <div class="sys-tags">
+        <span class="tag-zodiac">回歸黃道</span>
+        <span class="tag-feature">36 Decans</span>
+      </div>
+    </div>
+
+    <div class="system-card" data-cat="ancient">
+      <div class="system-card-head">
+        <div class="sys-icon">🏛️</div>
+        <div>
+          <div class="sys-name">巴比倫占星</div>
+          <div class="sys-sub">Babylonian Astrology</div>
+        </div>
+      </div>
+      <p class="sys-desc">MUL.APIN 星表、K.8538 星盤、Enūma Anu Enlil 預兆。</p>
+      <div class="sys-tags">
+        <span class="tag-zodiac">恆星黃道</span>
+        <span class="tag-feature">MUL.APIN</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── Tech Stack ── -->
+<section class="features" id="tech">
+  <div class="section-header">
+    <span class="section-tag">🛠️ 技術棧 Tech Stack</span>
+    <h2>可靠的技術基礎</h2>
+    <p>基於成熟的開源框架構建</p>
+  </div>
+  <div class="tech-stack">
+    <div class="tech-grid">
+      <div class="tech-item">🐍 Python 3.9+</div>
+      <div class="tech-item">🎈 Streamlit</div>
+      <div class="tech-item">⚡ FastAPI</div>
+      <div class="tech-item">🪐 Swiss Ephemeris (pyswisseph)</div>
+      <div class="tech-item">🤖 Cerebras AI</div>
+      <div class="tech-item">📄 fpdf2</div>
+      <div class="tech-item">📊 Plotly</div>
+      <div class="tech-item">📝 MIT License</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<section class="demo-section">
+  <div class="demo-inner">
+    <h2>開始你的星象之旅</h2>
+    <p>
+      免費、開源、無需安裝——只需打開瀏覽器，即可使用全球最全面的多體系占星排盤平台。
+    </p>
+    <div class="demo-buttons">
+      <a class="btn-primary" href="https://kinastro.streamlit.app" target="_blank" rel="noopener">
+        🚀 立即使用 Start Now
+      </a>
+      <a class="btn-secondary" href="https://github.com/kentang2017/kinastro" target="_blank" rel="noopener">
+        📖 查看文檔 Documentation
+      </a>
+      <a class="btn-secondary" href="https://github.com/sponsors/kentang2017" target="_blank" rel="noopener">
+        💛 贊助支持 Sponsor
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── Footer ── -->
+<footer class="footer">
+  <div class="footer-logo">⭐ 堅占星 Kin Astro</div>
+  <p>二十一體系占星排盤平台 — 千年星學智慧，一鍵觸手可及。</p>
+  <p>
+    由 <a href="https://github.com/kentang2017" target="_blank" rel="noopener">kentang2017</a> 開發維護
+    &nbsp;·&nbsp;
+    微信：<strong>gnatnek</strong>
+    &nbsp;·&nbsp;
+    公眾號：探究三式
+  </p>
+  <div class="footer-links">
+    <a href="https://kinastro.streamlit.app" target="_blank" rel="noopener">線上使用</a>
+    <a href="https://github.com/kentang2017/kinastro" target="_blank" rel="noopener">GitHub</a>
+    <a href="https://kentang2017.github.io/" target="_blank" rel="noopener">所有專案</a>
+    <a href="https://github.com/sponsors/kentang2017" target="_blank" rel="noopener">贊助支持</a>
+  </div>
+</footer>
+
+<script>
+function filterSystems(cat, btn) {
+  var cards = document.querySelectorAll('.system-card');
+  cards.forEach(function(card) {
+    if (cat === 'all' || card.getAttribute('data-cat') === cat) {
+      card.style.display = '';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+  var tabs = document.querySelectorAll('.sys-tab');
+  tabs.forEach(function(t) { t.classList.remove('active'); });
+  btn.classList.add('active');
+}
+</script>
+
+</body>
+</html>
