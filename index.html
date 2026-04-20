@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>堅占星 Kin Astro — 二十五體系占星排盤平台</title>
-  <meta name="description" content="堅占星 Kin Astro：融合二十五種中外古今占星體系的線上排盤平台，支援 AI 智慧分析、中英雙語介面、免費開源。" />
-  <meta name="keywords" content="占星,astrology,排盤,七政四餘,紫微斗數,西洋占星,印度占星,Vedic,Kabbalah,Astrocartography,Mazzalot,堅占星,kinastro" />
-  <meta property="og:title" content="堅占星 Kin Astro — 二十五體系占星排盤平台" />
-  <meta property="og:description" content="融合二十五種中外占星體系的線上排盤平台，支援 AI 智慧分析。" />
+  <title>堅占星 Kin Astro — 二十九體系占星排盤平台</title>
+  <meta name="description" content="堅占星 Kin Astro：融合二十九種中外古今占星體系的線上排盤平台，支援 AI 智慧分析、中英雙語介面、免費開源。" />
+  <meta name="keywords" content="占星,astrology,排盤,七政四餘,紫微斗數,西洋占星,印度占星,Vedic,Kabbalah,Astrocartography,Mazzalot,六壬,太乙,奇門,堅占星,kinastro" />
+  <meta property="og:title" content="堅占星 Kin Astro — 二十九體系占星排盤平台" />
+  <meta property="og:description" content="融合二十九種中外占星體系的線上排盤平台，支援 AI 智慧分析。" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://kinastro.streamlit.app" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -460,10 +460,10 @@
       <span class="pulse"></span>
       線上免費使用 · Open Source · MIT License
     </div>
-    <h1>二十五體系占星排盤平台</h1>
+    <h1>二十九體系占星排盤平台</h1>
     <p class="subtitle">
-      從七政四餘到西洋占星、從紫微斗數到印度 Jyotish、從 Astrocartography 到猶太 Mazzalot、從瑪雅曆法到巴比倫星表——<br/>
-      堅占星將全球二十五種占星體系融合為一，讓千年星學智慧觸手可及。
+      從七政四餘到西洋占星、從紫微斗數到印度 Jyotish、從三式（六壬、太乙、奇門）到 Astrocartography、從瑪雅曆法到巴比倫星表——<br/>
+      堅占星將全球二十九種占星體系融合為一，讓千年星學智慧觸手可及。
     </p>
     <div class="hero-buttons">
       <a class="btn-primary" href="https://kinastro.streamlit.app" target="_blank" rel="noopener">
@@ -475,11 +475,11 @@
     </div>
     <div class="stats-bar">
       <div class="stat-item">
-        <div class="stat-num">25</div>
+        <div class="stat-num">29</div>
         <div class="stat-label">占星體系 Systems</div>
       </div>
       <div class="stat-item">
-        <div class="stat-num">60+</div>
+        <div class="stat-num">80+</div>
         <div class="stat-label">子功能分頁 Sub-tabs</div>
       </div>
       <div class="stat-item">
@@ -499,14 +499,14 @@
   <div class="section-header">
     <span class="section-tag">✨ 特色亮點 Highlights</span>
     <h2>為什麼選擇堅占星？</h2>
-    <p>一站式排盤平台，集合古今中外占星智慧</p>
+    <p>一站式排盤平台，集合古今中外占星智慧，涵蓋三式、中國、西方、亞洲、中東及古代文明</p>
   </div>
   <div class="features-grid">
 
     <div class="feature-card">
       <span class="feature-icon">🔮</span>
-      <h3>二十五體系合一</h3>
-      <p>在同一個介面中切換中國七政四餘、紫微斗數、西洋占星、印度 Vedic、瑪雅曆法等二十五種占星體系，無需來回切換工具。</p>
+      <h3>二十九體系合一</h3>
+      <p>在同一個介面中切換中國七政四餘、紫微斗數、六壬太乙奇門三式、西洋占星、印度 Vedic、瑪雅曆法等二十九種占星體系，無需來回切換工具。</p>
     </div>
 
     <div class="feature-card">
@@ -564,12 +564,13 @@
 <section id="systems">
   <div class="section-header">
     <span class="section-tag">🧭 體系總覽 Systems at a Glance</span>
-    <h2>二十五種占星體系</h2>
-    <p>熱門 → 中國 → 西方 → 亞洲 → 中東 → 古代文明</p>
+    <h2>二十九種占星體系</h2>
+    <p>熱門 → 三式 → 中國 → 西方 → 亞洲 → 中東 → 古代文明</p>
   </div>
 
   <div class="systems-tabs">
     <button class="sys-tab active" onclick="filterSystems('all', this)">全部</button>
+    <button class="sys-tab" onclick="filterSystems('sanshi', this)">三式</button>
     <button class="sys-tab" onclick="filterSystems('chinese', this)">中國</button>
     <button class="sys-tab" onclick="filterSystems('western', this)">西方</button>
     <button class="sys-tab" onclick="filterSystems('asian', this)">亞洲</button>
@@ -578,6 +579,52 @@
   </div>
 
   <div class="systems-grid" id="systemsGrid">
+
+    <!-- Three Formulae 三式 -->
+    <div class="system-card" data-cat="sanshi">
+      <div class="system-card-head">
+        <div class="sys-icon">🔮</div>
+        <div>
+          <div class="sys-name">六壬祿命</div>
+          <div class="sys-sub">Da Liu Ren / Six Ren Destiny</div>
+        </div>
+      </div>
+      <p class="sys-desc">古代三式之一，以天地盤推演吉凶。四課三傳、十二宮、論命分析（身命判斷、女命專論、二十四格、十六局、流年月令）。</p>
+      <div class="sys-tags">
+        <span class="tag-zodiac">農曆</span>
+        <span class="tag-feature">四課三傳</span>
+      </div>
+    </div>
+
+    <div class="system-card" data-cat="sanshi">
+      <div class="system-card-head">
+        <div class="sys-icon">🌟</div>
+        <div>
+          <div class="sys-name">太乙命法</div>
+          <div class="sys-sub">Taiyi Life Method</div>
+        </div>
+      </div>
+      <p class="sys-desc">古代三式之首，太乙神數以出生年月日時推算命運。命宮身宮、陽九百六行限、出身卦、五柱卦象分析。</p>
+      <div class="sys-tags">
+        <span class="tag-zodiac">農曆</span>
+        <span class="tag-feature">五柱卦象</span>
+      </div>
+    </div>
+
+    <div class="system-card" data-cat="sanshi">
+      <div class="system-card-head">
+        <div class="sys-icon">🔮</div>
+        <div>
+          <div class="sys-name">奇門祿命</div>
+          <div class="sys-sub">Qimen Destiny Analysis</div>
+        </div>
+      </div>
+      <p class="sys-desc">以出生時辰的奇門遁甲局推斷一生吉凶禍福。六親分析、八門八神九星、格局推斷。</p>
+      <div class="sys-tags">
+        <span class="tag-zodiac">農曆</span>
+        <span class="tag-feature">八門九星</span>
+      </div>
+    </div>
 
     <!-- Chinese -->
     <div class="system-card" data-cat="chinese">
@@ -694,10 +741,10 @@
           <div class="sys-sub">Hellenistic Astrology</div>
         </div>
       </div>
-      <p class="sys-desc">Greek Lots（Fortune、Spirit 等）、Egyptian Bounds、Annual Profections、Zodiacal Releasing、百論。</p>
+      <p class="sys-desc">Greek Lots（Fortune、Spirit 等）、Egyptian Bounds、Annual Profections、Zodiacal Releasing、擴充 Lots、Valens Synkrasis、百論。</p>
       <div class="sys-tags">
         <span class="tag-zodiac">回歸黃道</span>
-        <span class="tag-feature">Greek Lots</span>
+        <span class="tag-feature">八個子分頁</span>
       </div>
     </div>
 
@@ -849,6 +896,21 @@
       <div class="sys-tags">
         <span class="tag-zodiac">藏曆</span>
         <span class="tag-feature">擇吉</span>
+      </div>
+    </div>
+
+    <div class="system-card" data-cat="asian">
+      <div class="system-card-head">
+        <div class="sys-icon">🏝️</div>
+        <div>
+          <div class="sys-name">巴厘 Wariga</div>
+          <div class="sys-sub">Balinese Wariga Calendar</div>
+        </div>
+      </div>
+      <p class="sys-desc">巴厘島傳統曆法系統。Wuku 210天週期、Wewaran 九層週期、Neptu 數值、吉凶判斷。</p>
+      <div class="sys-tags">
+        <span class="tag-zodiac">巴厘曆</span>
+        <span class="tag-feature">Wuku 週期</span>
       </div>
     </div>
 
@@ -1007,7 +1069,7 @@
 <!-- ── Footer ── -->
 <footer class="footer">
   <div class="footer-logo">⭐ 堅占星 Kin Astro</div>
-  <p>二十五體系占星排盤平台 — 千年星學智慧，一鍵觸手可及。</p>
+  <p>二十九體系占星排盤平台 — 千年星學智慧，一鍵觸手可及。</p>
   <p>
     由 <a href="https://github.com/kentang2017" target="_blank" rel="noopener">kentang2017</a> 開發維護
     &nbsp;·&nbsp;
