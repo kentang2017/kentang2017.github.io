@@ -214,6 +214,24 @@
     footer a { color: var(--gold); text-decoration: none; }
     footer a:hover { text-decoration: underline; }
 
+    /* ── language toggle ── */
+    .lang-toggle {
+      background: rgba(201,168,76,.12);
+      border: 1px solid rgba(201,168,76,.3);
+      color: var(--gold);
+      padding: .25rem .7rem;
+      border-radius: 14px;
+      cursor: pointer;
+      font-size: .78rem;
+      font-family: 'Georgia', serif;
+      font-weight: 600;
+      transition: background .2s, border-color .2s;
+    }
+    .lang-toggle:hover {
+      background: rgba(201,168,76,.25);
+      border-color: var(--gold);
+    }
+
     /* ── responsive ── */
     @media (max-width: 600px) {
       header { padding: .8rem 1rem; }
@@ -228,11 +246,12 @@
 <header>
   <a class="logo" href="#">☯ kentang2017</a>
   <nav>
-    <a href="#sanse">三式</a>
-    <a href="#tools">玄學工具</a>
-    <a href="#ref">參考資料</a>
-    <a href="#misc">其他</a>
-    <a href="index.html" style="color:var(--gold);">堅占星 ⭐</a>
+    <a href="#sanse" data-i18n="nav.sanse">三式</a>
+    <a href="#tools" data-i18n="nav.tools">玄學工具</a>
+    <a href="#ref" data-i18n="nav.ref">參考資料</a>
+    <a href="#misc" data-i18n="nav.misc">其他</a>
+    <a href="index.html" style="color:var(--gold);" data-i18n="nav.kinastro">堅占星 ⭐</a>
+    <button class="lang-toggle" id="langToggle" onclick="toggleLang()">EN</button>
     <a href="https://github.com/kentang2017" target="_blank" rel="noopener">GitHub ↗</a>
   </nav>
 </header>
@@ -245,16 +264,15 @@
     alt="kentang2017 avatar"
   />
   <h1>kentang2017</h1>
-  <p class="subtitle">
-    將數千年中國傳統術數，一行一行轉化為任何人都能運行的 Python 程式碼。<br/>
-    Translating millennia of Chinese divination arts into open-source Python.
+  <p class="subtitle" data-i18n-html="hero.subtitle">
+    將數千年中國傳統術數，一行一行轉化為任何人都能運行的 Python 程式碼。<br/>Translating millennia of Chinese divination arts into open-source Python.
   </p>
   <div class="hero-badges">
     <img src="https://img.shields.io/github/followers/kentang2017?style=flat-square&color=C9A84C&logo=github&label=Followers" alt="followers"/>
     <img src="https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white" alt="Python"/>
     <img src="https://img.shields.io/badge/PyPI-3775A9?style=flat-square&logo=pypi&logoColor=white" alt="PyPI"/>
   </div>
-  <a class="hero-cta" href="https://github.com/sponsors/kentang2017" target="_blank" rel="noopener">
+  <a class="hero-cta" href="https://github.com/sponsors/kentang2017" target="_blank" rel="noopener" data-i18n="hero.cta">
     💛 贊助支持 · Sponsor My Work
   </a>
 </section>
@@ -263,8 +281,8 @@
 <main>
 
   <!-- 堅三式 -->
-  <h2 class="section-title" id="sanse">🏛️ 堅三式 · The Greatest Three Chinese Divination Systems</h2>
-  <p class="section-desc">太乙明天道、奇門察地理、六壬盡人事 — 古代術數最高體系</p>
+  <h2 class="section-title" id="sanse" data-i18n="section.sanse.title">🏛️ 堅三式 · The Greatest Three Chinese Divination Systems</h2>
+  <p class="section-desc" data-i18n="section.sanse.desc">太乙明天道、奇門察地理、六壬盡人事 — 古代術數最高體系</p>
   <div class="repo-grid">
 
     <a class="repo-card" href="https://github.com/kentang2017/kintaiyi" target="_blank" rel="noopener">
@@ -272,10 +290,10 @@
         <span class="repo-icon">🌌</span>
         <div>
           <div class="repo-name">kintaiyi</div>
-          <div class="repo-cn-name">堅太乙 · 太乙神數</div>
+          <div class="repo-cn-name" data-i18n="kintaiyi.cn">堅太乙 · 太乙神數</div>
         </div>
       </div>
-      <p class="repo-desc">三式之首。推算天文異象、國運人事、戰爭兵陣。含年計、月計、日計、時計、分計、命法。</p>
+      <p class="repo-desc" data-i18n="kintaiyi.desc">三式之首。推算天文異象、國運人事、戰爭兵陣。含年計、月計、日計、時計、分計、命法。</p>
       <div class="repo-meta">
         <span class="stars">★ 34</span>
         <span class="lang">Python</span>
@@ -288,10 +306,10 @@
         <span class="repo-icon">☯️</span>
         <div>
           <div class="repo-name">kinqimen</div>
-          <div class="repo-cn-name">堅奇門 · 奇門遁甲</div>
+          <div class="repo-cn-name" data-i18n="kinqimen.cn">堅奇門 · 奇門遁甲</div>
         </div>
       </div>
-      <p class="repo-desc">集天文、兵法、術數於一體。含金函玉鏡日家奇門、拆補置閏時家奇門、刻家奇門排盤。</p>
+      <p class="repo-desc" data-i18n="kinqimen.desc">集天文、兵法、術數於一體。含金函玉鏡日家奇門、拆補置閏時家奇門、刻家奇門排盤。</p>
       <div class="repo-meta">
         <span class="stars">★ 57</span>
         <span class="lang">Python</span>
@@ -304,10 +322,10 @@
         <span class="repo-icon">🔯</span>
         <div>
           <div class="repo-name">kinliuren</div>
-          <div class="repo-cn-name">堅六壬 · 大六壬</div>
+          <div class="repo-cn-name" data-i18n="kinliuren.cn">堅六壬 · 大六壬</div>
         </div>
       </div>
-      <p class="repo-desc">古代占卜三式之一，精確推演人事吉凶禍福。簡單易用，不包含年月日時干支演化。</p>
+      <p class="repo-desc" data-i18n="kinliuren.desc">古代占卜三式之一，精確推演人事吉凶禍福。簡單易用，不包含年月日時干支演化。</p>
       <div class="repo-meta">
         <span class="stars">★ 87</span>
         <span class="lang">Python</span>
@@ -318,7 +336,7 @@
   </div>
 
   <!-- 堅系列玄學工具 -->
-  <h2 class="section-title" id="tools">📦 堅系列中外玄學工具 · Kin Series Divination Tools</h2>
+  <h2 class="section-title" id="tools" data-i18n="section.tools.title">📦 堅系列中外玄學工具 · Kin Series Divination Tools</h2>
   <div class="repo-grid">
 
     <a class="repo-card" href="https://github.com/kentang2017/ichingshifa" target="_blank" rel="noopener">
@@ -326,10 +344,10 @@
         <span class="repo-icon">📿</span>
         <div>
           <div class="repo-name">ichingshifa</div>
-          <div class="repo-cn-name">堅筮 · 周易筮法</div>
+          <div class="repo-cn-name" data-i18n="ichingshifa.cn">堅筮 · 周易筮法</div>
         </div>
       </div>
-      <p class="repo-desc">大衍之數，依古法模擬蓍草、銅錢起卦，解讀六十四卦、六爻、京房易、爻辭、日期占卦。</p>
+      <p class="repo-desc" data-i18n="ichingshifa.desc">大衍之數，依古法模擬蓍草、銅錢起卦，解讀六十四卦、六爻、京房易、爻辭、日期占卦。</p>
       <div class="repo-meta">
         <span class="stars">★ 233</span>
         <span class="lang">Python</span>
@@ -342,10 +360,10 @@
         <span class="repo-icon">📐</span>
         <div>
           <div class="repo-name">kinwangji</div>
-          <div class="repo-cn-name">堅皇極 · 皇極經世</div>
+          <div class="repo-cn-name" data-i18n="kinwangji.cn">堅皇極 · 皇極經世</div>
         </div>
       </div>
-      <p class="repo-desc">北宋邵雍《皇極經世》宇宙時間哲學，元會運世推算。</p>
+      <p class="repo-desc" data-i18n="kinwangji.desc">北宋邵雍《皇極經世》宇宙時間哲學，元會運世推算。</p>
       <div class="repo-meta">
         <span class="stars">★ 7</span>
         <span class="lang">Python</span>
@@ -358,10 +376,10 @@
         <span class="repo-icon">🌠</span>
         <div>
           <div class="repo-name">kinastro</div>
-          <div class="repo-cn-name">堅占星 · 二十一體系占星排盤平台</div>
+          <div class="repo-cn-name" data-i18n="kinastro.cn">堅占星 · 二十一體系占星排盤平台</div>
         </div>
       </div>
-      <p class="repo-desc">21 種中外占星體系合一排盤工具，融合傳統與現代占星體系，基於 Python Streamlit 平台。含 AI 智慧分析、中英雙語。<strong style="color:var(--gold);">→ 查看介紹頁</strong></p>
+      <p class="repo-desc" data-i18n-html="kinastro.desc">21 種中外占星體系合一排盤工具，融合傳統與現代占星體系，基於 Python Streamlit 平台。含 AI 智慧分析、中英雙語。<strong style="color:var(--gold);">→ 查看介紹頁</strong></p>
       <div class="repo-meta">
         <span class="stars">★ 10</span>
         <span class="lang">Python</span>
@@ -373,10 +391,10 @@
         <span class="repo-icon">🎴</span>
         <div>
           <div class="repo-name">kinwuzhao</div>
-          <div class="repo-cn-name">堅五兆</div>
+          <div class="repo-cn-name" data-i18n="kinwuzhao.cn">堅五兆</div>
         </div>
       </div>
-      <p class="repo-desc">五兆 — 唐代太卜署官方認可的五種占卜方法之一，以五行兆象判斷吉凶。</p>
+      <p class="repo-desc" data-i18n="kinwuzhao.desc">五兆 — 唐代太卜署官方認可的五種占卜方法之一，以五行兆象判斷吉凶。</p>
       <div class="repo-meta">
         <span class="stars">★ 1</span>
         <span class="lang">Python</span>
@@ -389,10 +407,10 @@
         <span class="repo-icon">🪙</span>
         <div>
           <div class="repo-name">kinjinkou</div>
-          <div class="repo-cn-name">堅金口 · 六壬金口訣</div>
+          <div class="repo-cn-name" data-i18n="kinjinkou.cn">堅金口 · 六壬金口訣</div>
         </div>
       </div>
-      <p class="repo-desc">六壬金口訣起課系統，Liu Ren Jin Kou Divination Chart。</p>
+      <p class="repo-desc" data-i18n="kinjinkou.desc">六壬金口訣起課系統，Liu Ren Jin Kou Divination Chart。</p>
       <div class="repo-meta">
         <span class="stars">★ 0</span>
         <span class="lang">Python</span>
@@ -405,10 +423,10 @@
         <span class="repo-icon">🔮</span>
         <div>
           <div class="repo-name">shenyishu</div>
-          <div class="repo-cn-name">堅神易數</div>
+          <div class="repo-cn-name" data-i18n="shenyishu.cn">堅神易數</div>
         </div>
       </div>
-      <p class="repo-desc">神易數乃明中葉抗倭元帥胡宗憲幕僚蔡時宜所創的兵占法。</p>
+      <p class="repo-desc" data-i18n="shenyishu.desc">神易數乃明中葉抗倭元帥胡宗憲幕僚蔡時宜所創的兵占法。</p>
       <div class="repo-meta">
         <span class="stars">★ 0</span>
         <span class="lang">Python</span>
@@ -421,10 +439,10 @@
         <span class="repo-icon">🐉</span>
         <div>
           <div class="repo-name">taixuanshifa</div>
-          <div class="repo-cn-name">堅太玄 · 太玄筮法</div>
+          <div class="repo-cn-name" data-i18n="taixuanshifa.cn">堅太玄 · 太玄筮法</div>
         </div>
       </div>
-      <p class="repo-desc">西漢揚雄（BC53–18CE）所創《太玄經》占卜方法。</p>
+      <p class="repo-desc" data-i18n="taixuanshifa.desc">西漢揚雄（BC53–18CE）所創《太玄經》占卜方法。</p>
       <div class="repo-meta">
         <span class="stars">★ 9</span>
         <span class="lang">Python</span>
@@ -437,10 +455,10 @@
         <span class="repo-icon">🎋</span>
         <div>
           <div class="repo-name">jingjue</div>
-          <div class="repo-cn-name">堅荊訣</div>
+          <div class="repo-cn-name" data-i18n="jingjue.cn">堅荊訣</div>
         </div>
       </div>
-      <p class="repo-desc">北大藏西漢竹簡，先秦時期罕見的古老占卜方法。</p>
+      <p class="repo-desc" data-i18n="jingjue.desc">北大藏西漢竹簡，先秦時期罕見的古老占卜方法。</p>
       <div class="repo-meta">
         <span class="stars">★ 5</span>
         <span class="lang">Python</span>
@@ -453,10 +471,10 @@
         <span class="repo-icon">⚡</span>
         <div>
           <div class="repo-name">luiting</div>
-          <div class="repo-cn-name">堅雷霆 · 雷霆曜氣</div>
+          <div class="repo-cn-name" data-i18n="luiting.cn">堅雷霆 · 雷霆曜氣</div>
         </div>
       </div>
-      <p class="repo-desc">罕見的擇日方法，雷霆曜氣 Luitingyaoqi。</p>
+      <p class="repo-desc" data-i18n="luiting.desc">罕見的擇日方法，雷霆曜氣 Luitingyaoqi。</p>
       <div class="repo-meta">
         <span class="stars">★ 1</span>
         <span class="lang">Python</span>
@@ -468,10 +486,10 @@
         <span class="repo-icon">🔗</span>
         <div>
           <div class="repo-name">liangtouqian</div>
-          <div class="repo-cn-name">堅兩頭鉗 · 鬼谷子分定經</div>
+          <div class="repo-cn-name" data-i18n="liangtouqian.cn">堅兩頭鉗 · 鬼谷子分定經</div>
         </div>
       </div>
-      <p class="repo-desc">鬼谷子分定經，又名兩頭鉗，由兩個天干構成的命數算命法。</p>
+      <p class="repo-desc" data-i18n="liangtouqian.desc">鬼谷子分定經，又名兩頭鉗，由兩個天干構成的命數算命法。</p>
       <div class="repo-meta">
         <span class="stars">★ 3</span>
         <span class="lang">Python</span>
@@ -483,10 +501,10 @@
         <span class="repo-icon">🌍</span>
         <div>
           <div class="repo-name">kinifa</div>
-          <div class="repo-cn-name">堅伊法 · Ifá</div>
+          <div class="repo-cn-name" data-i18n="kinifa.cn">堅伊法 · Ifá</div>
         </div>
       </div>
-      <p class="repo-desc">非洲的易經，西非約魯巴民族的占卜系統 Ifá。</p>
+      <p class="repo-desc" data-i18n="kinifa.desc">非洲的易經，西非約魯巴民族的占卜系統 Ifá。</p>
       <div class="repo-meta">
         <span class="stars">★ 1</span>
         <span class="lang">Python</span>
@@ -498,10 +516,10 @@
         <span class="repo-icon">🕉️</span>
         <div>
           <div class="repo-name">kinvastu</div>
-          <div class="repo-cn-name">堅瓦斯圖 · Vastu</div>
+          <div class="repo-cn-name" data-i18n="kinvastu.cn">堅瓦斯圖 · Vastu</div>
         </div>
       </div>
-      <p class="repo-desc">印度吠陀風水（Vastu），融合印度傳統建築玄學體系。</p>
+      <p class="repo-desc" data-i18n="kinvastu.desc">印度吠陀風水（Vastu），融合印度傳統建築玄學體系。</p>
       <div class="repo-meta">
         <span class="stars">★ 1</span>
         <span class="lang">Python</span>
@@ -513,10 +531,10 @@
         <span class="repo-icon">⚓</span>
         <div>
           <div class="repo-name">kinketika</div>
-          <div class="repo-cn-name">堅克提卡 · Bintang Tujuh</div>
+          <div class="repo-cn-name" data-i18n="kinketika.cn">堅克提卡 · Bintang Tujuh</div>
         </div>
       </div>
-      <p class="repo-desc">馬來群島伊斯蘭世界的七星（Bintang Tujuh）擇吉占卜法。</p>
+      <p class="repo-desc" data-i18n="kinketika.desc">馬來群島伊斯蘭世界的七星（Bintang Tujuh）擇吉占卜法。</p>
       <div class="repo-meta">
         <span class="stars">★ 1</span>
         <span class="lang">Python</span>
@@ -526,7 +544,7 @@
   </div>
 
   <!-- 參考資料 -->
-  <h2 class="section-title" id="ref">📚 參考資料 · Reference &amp; Data</h2>
+  <h2 class="section-title" id="ref" data-i18n="section.ref.title">📚 參考資料 · Reference &amp; Data</h2>
   <div class="repo-grid">
 
     <a class="repo-card" href="https://github.com/kentang2017/shushubook" target="_blank" rel="noopener">
@@ -534,10 +552,10 @@
         <span class="repo-icon">📖</span>
         <div>
           <div class="repo-name">shushubook</div>
-          <div class="repo-cn-name">術數純文字電子書</div>
+          <div class="repo-cn-name" data-i18n="shushubook.cn">術數純文字電子書</div>
         </div>
       </div>
-      <p class="repo-desc">術數古籍純文字電子書合集。</p>
+      <p class="repo-desc" data-i18n="shushubook.desc">術數古籍純文字電子書合集。</p>
       <div class="repo-meta">
         <span class="stars">★ 20</span>
       </div>
@@ -548,10 +566,10 @@
         <span class="repo-icon">🐦</span>
         <div>
           <div class="repo-name">yanqin_studies</div>
-          <div class="repo-cn-name">演禽研究書目</div>
+          <div class="repo-cn-name" data-i18n="yanqin.cn">演禽研究書目</div>
         </div>
       </div>
-      <p class="repo-desc">演禽術數研究書目總匯，二十八宿飛禽占卜文獻從古至今書目。</p>
+      <p class="repo-desc" data-i18n="yanqin.desc">演禽術數研究書目總匯，二十八宿飛禽占卜文獻從古至今書目。</p>
       <div class="repo-meta">
         <span class="stars">★ 13</span>
       </div>
@@ -562,10 +580,10 @@
         <span class="repo-icon">🎲</span>
         <div>
           <div class="repo-name">astrology_gambling_books</div>
-          <div class="repo-cn-name">占星博彩書目</div>
+          <div class="repo-cn-name" data-i18n="astrogamble.cn">占星博彩書目</div>
         </div>
       </div>
-      <p class="repo-desc">以占星、術數、預測學應用於賭博博彩（賽馬、足球等）的書目。</p>
+      <p class="repo-desc" data-i18n="astrogamble.desc">以占星、術數、預測學應用於賭博博彩（賽馬、足球等）的書目。</p>
       <div class="repo-meta">
         <span class="stars">★ 13</span>
       </div>
@@ -576,10 +594,10 @@
         <span class="repo-icon">⚔️</span>
         <div>
           <div class="repo-name">bingshu</div>
-          <div class="repo-cn-name">兵書古籍書目</div>
+          <div class="repo-cn-name" data-i18n="bingshu.cn">兵書古籍書目</div>
         </div>
       </div>
-      <p class="repo-desc">中國古代兵書古籍書目彙編。</p>
+      <p class="repo-desc" data-i18n="bingshu.desc">中國古代兵書古籍書目彙編。</p>
       <div class="repo-meta">
         <span class="stars">★ 1</span>
       </div>
@@ -590,10 +608,10 @@
         <span class="repo-icon">💾</span>
         <div>
           <div class="repo-name">iching_databases</div>
-          <div class="repo-cn-name">易經資料爬取</div>
+          <div class="repo-cn-name" data-i18n="ichingdb.cn">易經資料爬取</div>
         </div>
       </div>
-      <p class="repo-desc">爬取有關易經的原始資料，供研究使用。</p>
+      <p class="repo-desc" data-i18n="ichingdb.desc">爬取有關易經的原始資料，供研究使用。</p>
       <div class="repo-meta">
         <span class="stars">★ 1</span>
         <span class="lang">Python</span>
@@ -603,7 +621,7 @@
   </div>
 
   <!-- 其他工具 -->
-  <h2 class="section-title" id="misc">🛠️ 其他工具 · Other Tools</h2>
+  <h2 class="section-title" id="misc" data-i18n="section.misc.title">🛠️ 其他工具 · Other Tools</h2>
   <div class="repo-grid">
 
     <a class="repo-card" href="https://github.com/kentang2017/hkjc_horserace_scraping" target="_blank" rel="noopener">
@@ -611,10 +629,10 @@
         <span class="repo-icon">🐎</span>
         <div>
           <div class="repo-name">hkjc_horserace_scraping</div>
-          <div class="repo-cn-name">香港賽馬會賽果爬取</div>
+          <div class="repo-cn-name" data-i18n="hkjc.cn">香港賽馬會賽果爬取</div>
         </div>
       </div>
-      <p class="repo-desc">從香港賽馬會官方網站提取日晚賽馬賽果，方便回測預測。</p>
+      <p class="repo-desc" data-i18n="hkjc.desc">從香港賽馬會官方網站提取日晚賽馬賽果，方便回測預測。</p>
       <div class="repo-meta">
         <span class="stars">★ 2</span>
         <span class="lang">Python</span>
@@ -626,10 +644,10 @@
         <span class="repo-icon">📈</span>
         <div>
           <div class="repo-name">aastock_selenium_bs4_web-scraping</div>
-          <div class="repo-cn-name">aastock 股票爬取</div>
+          <div class="repo-cn-name" data-i18n="aastock.cn">aastock 股票爬取</div>
         </div>
       </div>
-      <p class="repo-desc">使用 Selenium 爬取 aastock.com 的 SMA、RSI、MACD 技術指標。</p>
+      <p class="repo-desc" data-i18n="aastock.desc">使用 Selenium 爬取 aastock.com 的 SMA、RSI、MACD 技術指標。</p>
       <div class="repo-meta">
         <span class="stars">★ 0</span>
         <span class="lang">Python</span>
@@ -641,10 +659,10 @@
         <span class="repo-icon">📜</span>
         <div>
           <div class="repo-name">getncl</div>
-          <div class="repo-cn-name">台灣國家圖書館古籍下載</div>
+          <div class="repo-cn-name" data-i18n="getncl.cn">台灣國家圖書館古籍下載</div>
         </div>
       </div>
-      <p class="repo-desc">台灣國家圖書館古籍圖片批量下載工具。</p>
+      <p class="repo-desc" data-i18n="getncl.desc">台灣國家圖書館古籍圖片批量下載工具。</p>
       <div class="repo-meta">
         <span class="stars">★ 0</span>
         <span class="lang">Python</span>
@@ -657,12 +675,12 @@
 
 <!-- ── Footer ── -->
 <footer>
-  <p>
+  <p data-i18n-html="footer.p1">
     中國傳統玄學術數歷經數千年傳承，由 
     <a href="https://github.com/kentang2017" target="_blank" rel="noopener">kentang2017</a> 
     將其轉化為開源 Python 程式碼。
   </p>
-  <p style="margin-top:.5rem;">
+  <p style="margin-top:.5rem;" data-i18n-html="footer.p2">
     <a href="https://github.com/sponsors/kentang2017" target="_blank" rel="noopener">💛 贊助支持</a>
     &nbsp;·&nbsp;
     微信：<strong>gnatnek</strong>
@@ -671,5 +689,96 @@
   </p>
 </footer>
 
+
+<script>
+var T = {
+  "nav.sanse":           {zh:"三式", en:"Three Formulae"},
+  "nav.tools":           {zh:"玄學工具", en:"Divination Tools"},
+  "nav.ref":             {zh:"參考資料", en:"References"},
+  "nav.misc":            {zh:"其他", en:"Other"},
+  "nav.kinastro":        {zh:"堅占星 ⭐", en:"Kin Astro ⭐"},
+  "hero.subtitle":       {zh:'將數千年中國傳統術數，一行一行轉化為任何人都能運行的 Python 程式碼。<br/>Translating millennia of Chinese divination arts into open-source Python.', en:'Translating millennia of Chinese divination arts,<br/>line by line, into Python code that anyone can run.'},
+  "hero.cta":            {zh:"💛 贊助支持 · Sponsor My Work", en:"💛 Sponsor My Work"},
+  "section.sanse.title": {zh:"🏛️ 堅三式 · The Greatest Three Chinese Divination Systems", en:"🏛️ The Greatest Three · Chinese Divination Systems"},
+  "section.sanse.desc":  {zh:"太乙明天道、奇門察地理、六壬盡人事 — 古代術數最高體系", en:"Taiyi reveals heavenly ways, Qimen surveys geography, Liuren masters human affairs — the supreme ancient divination systems"},
+  "section.tools.title": {zh:"📦 堅系列中外玄學工具 · Kin Series Divination Tools", en:"📦 Kin Series · Divination Tools"},
+  "section.ref.title":   {zh:"📚 參考資料 · Reference & Data", en:"📚 Reference & Data"},
+  "section.misc.title":  {zh:"🛠️ 其他工具 · Other Tools", en:"🛠️ Other Tools"},
+  "kintaiyi.cn":   {zh:"堅太乙 · 太乙神數", en:"Kin Taiyi · Taiyi Divine Numbers"},
+  "kintaiyi.desc": {zh:"三式之首。推算天文異象、國運人事、戰爭兵陣。含年計、月計、日計、時計、分計、命法。", en:"Foremost of the Three Formulae. Calculates celestial phenomena, national destiny, warfare formations. Includes year, month, day, hour, minute calculations, and destiny method."},
+  "kinqimen.cn":   {zh:"堅奇門 · 奇門遁甲", en:"Kin Qimen · Qimen Dunjia"},
+  "kinqimen.desc": {zh:"集天文、兵法、術數於一體。含金函玉鏡日家奇門、拆補置閏時家奇門、刻家奇門排盤。", en:"Integrates astronomy, military strategy, and divination arts. Includes Daily Qimen (Jin Han Yu Jing), Hourly Qimen, and Quarter-Hour Qimen charting."},
+  "kinliuren.cn":   {zh:"堅六壬 · 大六壬", en:"Kin Liuren · Da Liu Ren"},
+  "kinliuren.desc": {zh:"古代占卜三式之一，精確推演人事吉凶禍福。簡單易用，不包含年月日時干支演化。", en:"One of the Three Ancient Divination Formulae, precisely deducing fortune and misfortune. Simple to use, without stem-branch derivation."},
+  "ichingshifa.cn":   {zh:"堅筮 · 周易筮法", en:"Kin She · I Ching Divination"},
+  "ichingshifa.desc": {zh:"大衍之數，依古法模擬蓍草、銅錢起卦，解讀六十四卦、六爻、京房易、爻辭、日期占卦。", en:"Grand Expansion numbers — simulates yarrow stalks and coin methods to cast hexagrams. Interprets 64 hexagrams, six lines, Jing Fang Yi, line texts, and date divination."},
+  "kinwangji.cn":   {zh:"堅皇極 · 皇極經世", en:"Kin Wangji · Huangji Jingshi"},
+  "kinwangji.desc": {zh:"北宋邵雍《皇極經世》宇宙時間哲學，元會運世推算。", en:"Shao Yong's (Northern Song) cosmic time philosophy — Yuan, Hui, Yun, Shi epoch calculations."},
+  "kinastro.cn":   {zh:"堅占星 · 二十一體系占星排盤平台", en:"Kin Astro · Multi-System Astrology Platform"},
+  "kinastro.desc": {zh:'21 種中外占星體系合一排盤工具，融合傳統與現代占星體系，基於 Python Streamlit 平台。含 AI 智慧分析、中英雙語。<strong style="color:var(--gold);">→ 查看介紹頁</strong>', en:'Multi-system astrology charting tool unifying traditional and modern systems, built on Python Streamlit. Includes AI analysis and bilingual interface.<strong style="color:var(--gold);">→ View intro page</strong>'},
+  "kinwuzhao.cn":   {zh:"堅五兆", en:"Kin Wuzhao"},
+  "kinwuzhao.desc": {zh:"五兆 — 唐代太卜署官方認可的五種占卜方法之一，以五行兆象判斷吉凶。", en:"Wuzhao — one of five divination methods officially recognized by the Tang dynasty's Grand Divination Bureau, using Five-Element omen signs."},
+  "kinjinkou.cn":   {zh:"堅金口 · 六壬金口訣", en:"Kin Jinkou · Liu Ren Jin Kou"},
+  "kinjinkou.desc": {zh:"六壬金口訣起課系統，Liu Ren Jin Kou Divination Chart。", en:"Liu Ren Jin Kou Jue divination charting system."},
+  "shenyishu.cn":   {zh:"堅神易數", en:"Kin Shenyishu"},
+  "shenyishu.desc": {zh:"神易數乃明中葉抗倭元帥胡宗憲幕僚蔡時宜所創的兵占法。", en:"Shenyishu — a military divination method created by Cai Shiyi, advisor to anti-piracy Marshal Hu Zongxian in the mid-Ming dynasty."},
+  "taixuanshifa.cn":   {zh:"堅太玄 · 太玄筮法", en:"Kin Taixuan · Taixuan Divination"},
+  "taixuanshifa.desc": {zh:"西漢揚雄（BC53–18CE）所創《太玄經》占卜方法。", en:"Divination method from Yang Xiong's (53 BC–18 AD) Taixuan Jing of the Western Han dynasty."},
+  "jingjue.cn":   {zh:"堅荊訣", en:"Kin Jingjue"},
+  "jingjue.desc": {zh:"北大藏西漢竹簡，先秦時期罕見的古老占卜方法。", en:"Peking University's collection of Western Han bamboo slips — a rare ancient divination method from the pre-Qin era."},
+  "luiting.cn":   {zh:"堅雷霆 · 雷霆曜氣", en:"Kin Luiting · Thunder Radiance"},
+  "luiting.desc": {zh:"罕見的擇日方法，雷霆曜氣 Luitingyaoqi。", en:"A rare date-selection method — Leiting Yaoqi (Thunder Radiance Energy)."},
+  "liangtouqian.cn":   {zh:"堅兩頭鉗 · 鬼谷子分定經", en:"Kin Liangtouqian · Guiguzi Fending Jing"},
+  "liangtouqian.desc": {zh:"鬼谷子分定經，又名兩頭鉗，由兩個天干構成的命數算命法。", en:"Guiguzi Fending Jing, a.k.a. Liangtouqian — a destiny method based on two Heavenly Stems."},
+  "kinifa.cn":   {zh:"堅伊法 · Ifá", en:"Kin Ifa · Ifá"},
+  "kinifa.desc": {zh:"非洲的易經，西非約魯巴民族的占卜系統 Ifá。", en:"The I Ching of Africa — the Yoruba divination system of West Africa."},
+  "kinvastu.cn":   {zh:"堅瓦斯圖 · Vastu", en:"Kin Vastu · Vastu"},
+  "kinvastu.desc": {zh:"印度吠陀風水（Vastu），融合印度傳統建築玄學體系。", en:"Indian Vedic Feng Shui (Vastu), integrating traditional Indian architectural metaphysics."},
+  "kinketika.cn":   {zh:"堅克提卡 · Bintang Tujuh", en:"Kin Ketika · Bintang Tujuh"},
+  "kinketika.desc": {zh:"馬來群島伊斯蘭世界的七星（Bintang Tujuh）擇吉占卜法。", en:"Seven Stars (Bintang Tujuh) auspicious divination from the Malay-Islamic world."},
+  "shushubook.cn":   {zh:"術數純文字電子書", en:"Divination E-books (Plain Text)"},
+  "shushubook.desc": {zh:"術數古籍純文字電子書合集。", en:"Collection of ancient divination texts in plain-text e-book format."},
+  "yanqin.cn":   {zh:"演禽研究書目", en:"Yanqin Studies Bibliography"},
+  "yanqin.desc": {zh:"演禽術數研究書目總匯，二十八宿飛禽占卜文獻從古至今書目。", en:"Comprehensive bibliography of Yanqin divination studies — 28 Lunar Mansion flying-animal divination literature from antiquity to present."},
+  "astrogamble.cn":   {zh:"占星博彩書目", en:"Astrology & Gambling Books"},
+  "astrogamble.desc": {zh:"以占星、術數、預測學應用於賭博博彩（賽馬、足球等）的書目。", en:"Bibliography of astrology, divination, and prediction applied to gambling (horse racing, football, etc.)."},
+  "bingshu.cn":   {zh:"兵書古籍書目", en:"Military Classics Bibliography"},
+  "bingshu.desc": {zh:"中國古代兵書古籍書目彙編。", en:"Compilation of ancient Chinese military classics bibliography."},
+  "ichingdb.cn":   {zh:"易經資料爬取", en:"I Ching Data Scraping"},
+  "ichingdb.desc": {zh:"爬取有關易經的原始資料，供研究使用。", en:"Scraping raw I Ching data for research purposes."},
+  "hkjc.cn":   {zh:"香港賽馬會賽果爬取", en:"HKJC Horse Race Scraping"},
+  "hkjc.desc": {zh:"從香港賽馬會官方網站提取日晚賽馬賽果，方便回測預測。", en:"Extracts day/night horse race results from the HKJC website for backtesting predictions."},
+  "aastock.cn":   {zh:"aastock 股票爬取", en:"AAStock Web Scraping"},
+  "aastock.desc": {zh:"使用 Selenium 爬取 aastock.com 的 SMA、RSI、MACD 技術指標。", en:"Selenium-based scraping of SMA, RSI, MACD technical indicators from aastock.com."},
+  "getncl.cn":   {zh:"台灣國家圖書館古籍下載", en:"Taiwan National Library Downloads"},
+  "getncl.desc": {zh:"台灣國家圖書館古籍圖片批量下載工具。", en:"Batch download tool for ancient manuscript images from Taiwan's National Library."},
+  "footer.p1": {zh:'中國傳統玄學術數歷經數千年傳承，由 <a href="https://github.com/kentang2017" target="_blank" rel="noopener">kentang2017</a> 將其轉化為開源 Python 程式碼。', en:'Millennia of Chinese traditional divination arts, translated into open-source Python by <a href="https://github.com/kentang2017" target="_blank" rel="noopener">kentang2017</a>.'},
+  "footer.p2": {zh:'<a href="https://github.com/sponsors/kentang2017" target="_blank" rel="noopener">💛 贊助支持</a> &nbsp;·&nbsp; 微信：<strong>gnatnek</strong> &nbsp;·&nbsp; 公眾號：探究三式', en:'<a href="https://github.com/sponsors/kentang2017" target="_blank" rel="noopener">💛 Sponsor</a> &nbsp;·&nbsp; WeChat: <strong>gnatnek</strong> &nbsp;·&nbsp; Official Account: 探究三式'},
+  "title": {zh:"kentang2017 · 玄學術數 Python 開源專案", en:"kentang2017 · Chinese Divination Open-Source Python Projects"}
+};
+function applyLang(lang) {
+  document.querySelectorAll('[data-i18n]').forEach(function(el) {
+    var key = el.getAttribute('data-i18n');
+    if (T[key]) el.textContent = T[key][lang];
+  });
+  document.querySelectorAll('[data-i18n-html]').forEach(function(el) {
+    var key = el.getAttribute('data-i18n-html');
+    if (T[key]) el.innerHTML = T[key][lang];
+  });
+  document.documentElement.lang = lang === 'zh' ? 'zh-Hant' : 'en';
+  if (T['title']) document.title = T['title'][lang];
+  localStorage.setItem('site-lang', lang);
+  var btn = document.getElementById('langToggle');
+  if (btn) btn.textContent = lang === 'zh' ? 'EN' : '中';
+}
+function toggleLang() {
+  var cur = localStorage.getItem('site-lang') || 'zh';
+  applyLang(cur === 'zh' ? 'en' : 'zh');
+}
+(function() {
+  var lang = localStorage.getItem('site-lang') || 'zh';
+  applyLang(lang);
+})();
+</script>
 </body>
 </html>
