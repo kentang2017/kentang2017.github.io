@@ -434,6 +434,24 @@
       }
       .nav-links.open a:not(.nav-cta) { display: block; }
     }
+    /* ── language toggle ── */
+    .lang-toggle {
+      background: rgba(124,106,255,.12);
+      border: 1px solid rgba(124,106,255,.3);
+      color: var(--accent-lt);
+      padding: .3rem .8rem;
+      border-radius: 16px;
+      cursor: pointer;
+      font-size: .78rem;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      transition: background .2s, border-color .2s;
+      letter-spacing: .05em;
+    }
+    .lang-toggle:hover {
+      background: rgba(124,106,255,.25);
+      border-color: var(--accent);
+    }
   </style>
 </head>
 <body>
@@ -441,14 +459,15 @@
 <!-- ── Navigation ── -->
 <nav class="navbar">
   <a class="nav-logo" href="#">⭐ 堅占星 Kin Astro</a>
-  <button class="nav-toggle" aria-label="選單" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
+  <button class="nav-toggle" aria-label="選單" data-i18n-aria="nav.toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
   <div class="nav-links">
-    <a href="#features">特色功能</a>
-    <a href="#systems">占星體系</a>
-    <a href="#tech">技術棧</a>
+    <a href="#features" data-i18n="nav.features">特色功能</a>
+    <a href="#systems" data-i18n="nav.systems">占星體系</a>
+    <a href="#tech" data-i18n="nav.tech">技術棧</a>
     <a href="https://github.com/kentang2017/kinastro" target="_blank" rel="noopener">GitHub</a>
-    <a href="https://kentang2017.github.io/" target="_blank" rel="noopener">所有專案</a>
-    <a class="nav-cta" href="https://kinastro.streamlit.app" target="_blank" rel="noopener">🚀 立即使用</a>
+    <a href="https://kentang2017.github.io/" target="_blank" rel="noopener" data-i18n="nav.projects">所有專案</a>
+    <button class="lang-toggle" id="langToggle" onclick="toggleLang()">EN</button>
+    <a class="nav-cta" href="https://kinastro.streamlit.app" target="_blank" rel="noopener" data-i18n="nav.cta">🚀 立即使用</a>
   </div>
 </nav>
 
@@ -458,37 +477,37 @@
   <div class="hero-content">
     <div class="hero-badge">
       <span class="pulse"></span>
-      線上免費使用 · Open Source · MIT License
+      <span data-i18n="hero.badge">線上免費使用 · Open Source · MIT License</span>
     </div>
-    <h1>二十九體系占星排盤平台</h1>
-    <p class="subtitle">
+    <h1 data-i18n="hero.title">二十九體系占星排盤平台</h1>
+    <p class="subtitle" data-i18n-html="hero.subtitle">
       從七政四餘到西洋占星、從紫微斗數到印度 Jyotish、從三式（六壬、太乙、奇門）到 Astrocartography、從瑪雅曆法到巴比倫星表——<br/>
       堅占星將全球二十九種占星體系融合為一，讓千年星學智慧觸手可及。
     </p>
     <div class="hero-buttons">
-      <a class="btn-primary" href="https://kinastro.streamlit.app" target="_blank" rel="noopener">
+      <a class="btn-primary" href="https://kinastro.streamlit.app" target="_blank" rel="noopener" data-i18n="hero.btn.start">
         🔮 開始排盤 Start Charting
       </a>
-      <a class="btn-secondary" href="https://github.com/kentang2017/kinastro" target="_blank" rel="noopener">
+      <a class="btn-secondary" href="https://github.com/kentang2017/kinastro" target="_blank" rel="noopener" data-i18n="hero.btn.github">
         ⭐ GitHub 原始碼
       </a>
     </div>
     <div class="stats-bar">
       <div class="stat-item">
         <div class="stat-num">29</div>
-        <div class="stat-label">占星體系 Systems</div>
+        <div class="stat-label" data-i18n="hero.stat.systems">占星體系 Systems</div>
       </div>
       <div class="stat-item">
         <div class="stat-num">80+</div>
-        <div class="stat-label">子功能分頁 Sub-tabs</div>
+        <div class="stat-label" data-i18n="hero.stat.subtabs">子功能分頁 Sub-tabs</div>
       </div>
       <div class="stat-item">
         <div class="stat-num">AI</div>
-        <div class="stat-label">智慧分析 Analysis</div>
+        <div class="stat-label" data-i18n="hero.stat.analysis">智慧分析 Analysis</div>
       </div>
       <div class="stat-item">
         <div class="stat-num">中英</div>
-        <div class="stat-label">雙語介面 Bilingual</div>
+        <div class="stat-label" data-i18n="hero.stat.bilingual">雙語介面 Bilingual</div>
       </div>
     </div>
   </div>
@@ -497,64 +516,64 @@
 <!-- ── Features ── -->
 <section class="features" id="features">
   <div class="section-header">
-    <span class="section-tag">✨ 特色亮點 Highlights</span>
-    <h2>為什麼選擇堅占星？</h2>
-    <p>一站式排盤平台，集合古今中外占星智慧，涵蓋三式、中國、西方、亞洲、中東及古代文明</p>
+    <span class="section-tag" data-i18n="feat.tag">✨ 特色亮點 Highlights</span>
+    <h2 data-i18n="feat.title">為什麼選擇堅占星？</h2>
+    <p data-i18n="feat.desc">一站式排盤平台，集合古今中外占星智慧，涵蓋三式、中國、西方、亞洲、中東及古代文明</p>
   </div>
   <div class="features-grid">
 
     <div class="feature-card">
       <span class="feature-icon">🔮</span>
-      <h3>二十九體系合一</h3>
-      <p>在同一個介面中切換中國七政四餘、紫微斗數、六壬太乙奇門三式、西洋占星、印度 Vedic、瑪雅曆法等二十九種占星體系，無需來回切換工具。</p>
+      <h3 data-i18n="feat.1.t">二十九體系合一</h3>
+      <p data-i18n="feat.1.d">在同一個介面中切換中國七政四餘、紫微斗數、六壬太乙奇門三式、西洋占星、印度 Vedic、瑪雅曆法等二十九種占星體系，無需來回切換工具。</p>
     </div>
 
     <div class="feature-card">
       <span class="feature-icon">🪐</span>
-      <h3>精密天文計算</h3>
-      <p>使用瑞士星曆表 (Swiss Ephemeris) pyswisseph 進行高精度天文運算，確保行星位置精確無誤。</p>
+      <h3 data-i18n="feat.2.t">精密天文計算</h3>
+      <p data-i18n="feat.2.d">使用瑞士星曆表 (Swiss Ephemeris) pyswisseph 進行高精度天文運算，確保行星位置精確無誤。</p>
     </div>
 
     <div class="feature-card">
       <span class="feature-icon">🤖</span>
-      <h3>AI 智慧分析</h3>
-      <p>整合LLM，一鍵生成命盤深度解讀報告，助你快速理解星象含義。</p>
+      <h3 data-i18n="feat.3.t">AI 智慧分析</h3>
+      <p data-i18n="feat.3.d">整合LLM，一鍵生成命盤深度解讀報告，助你快速理解星象含義。</p>
     </div>
 
     <div class="feature-card">
       <span class="feature-icon">🌏</span>
-      <h3>全球化城市支援</h3>
-      <p>內建全球多個主要城市座標，亦支援自訂經緯度，隨時隨地為任何地點排盤。</p>
+      <h3 data-i18n="feat.4.t">全球化城市支援</h3>
+      <p data-i18n="feat.4.d">內建全球多個主要城市座標，亦支援自訂經緯度，隨時隨地為任何地點排盤。</p>
     </div>
 
     <div class="feature-card">
       <span class="feature-icon">🌐</span>
-      <h3>中英雙語介面</h3>
-      <p>完整的中文與英文雙語支援，無論你的母語是什麼，都能輕鬆使用。</p>
+      <h3 data-i18n="feat.5.t">中英雙語介面</h3>
+      <p data-i18n="feat.5.d">完整的中文與英文雙語支援，無論你的母語是什麼，都能輕鬆使用。</p>
     </div>
 
     <div class="feature-card">
       <span class="feature-icon">📱</span>
-      <h3>響應式設計</h3>
-      <p>適配桌面與移動設備，手機、平板、電腦皆可流暢使用，隨時查閱星盤。</p>
+      <h3 data-i18n="feat.6.t">響應式設計</h3>
+      <p data-i18n="feat.6.d">適配桌面與移動設備，手機、平板、電腦皆可流暢使用，隨時查閱星盤。</p>
     </div>
 
     <div class="feature-card">
       <span class="feature-icon">🔌</span>
-      <h3>REST API 後端</h3>
-      <p>FastAPI 後端提供所有體系的 JSON 計算 API，可獨立部署，方便開發者整合。</p>
+      <h3 data-i18n="feat.7.t">REST API 後端</h3>
+      <p data-i18n="feat.7.d">FastAPI 後端提供所有體系的 JSON 計算 API，可獨立部署，方便開發者整合。</p>
     </div>
 
     <div class="feature-card">
       <span class="feature-icon">💾</span>
-      <h3>儲存與匯出</h3>
-      <p>儲存、載入排盤參數，並支援 TXT、CSV、PDF 三種格式匯出，輕鬆保存分析結果。</p>
+      <h3 data-i18n="feat.8.t">儲存與匯出</h3>
+      <p data-i18n="feat.8.d">儲存、載入排盤參數，並支援 TXT、CSV、PDF 三種格式匯出，輕鬆保存分析結果。</p>
     </div>
 
     <div class="feature-card">
       <span class="feature-icon">🆓</span>
-      <h3>開源免費</h3>
-      <p>MIT 授權，完整原始碼公開於 GitHub，任何人都可以自由使用、修改與擴展。</p>
+      <h3 data-i18n="feat.9.t">開源免費</h3>
+      <p data-i18n="feat.9.d">MIT 授權，完整原始碼公開於 GitHub，任何人都可以自由使用、修改與擴展。</p>
     </div>
 
   </div>
@@ -563,19 +582,19 @@
 <!-- ── Systems Showcase ── -->
 <section id="systems">
   <div class="section-header">
-    <span class="section-tag">🧭 體系總覽 Systems at a Glance</span>
-    <h2>二十九種占星體系</h2>
-    <p>熱門 → 三式 → 中國 → 西方 → 亞洲 → 中東 → 古代文明</p>
+    <span class="section-tag" data-i18n="sys.tag">🧭 體系總覽 Systems at a Glance</span>
+    <h2 data-i18n="sys.title">二十九種占星體系</h2>
+    <p data-i18n="sys.desc">熱門 → 三式 → 中國 → 西方 → 亞洲 → 中東 → 古代文明</p>
   </div>
 
   <div class="systems-tabs">
-    <button class="sys-tab active" onclick="filterSystems('all', this)">全部</button>
-    <button class="sys-tab" onclick="filterSystems('sanshi', this)">三式</button>
-    <button class="sys-tab" onclick="filterSystems('chinese', this)">中國</button>
-    <button class="sys-tab" onclick="filterSystems('western', this)">西方</button>
-    <button class="sys-tab" onclick="filterSystems('asian', this)">亞洲</button>
-    <button class="sys-tab" onclick="filterSystems('mideast', this)">中東</button>
-    <button class="sys-tab" onclick="filterSystems('ancient', this)">古代文明</button>
+    <button class="sys-tab active" onclick="filterSystems('all', this)" data-i18n="sys.tab.all">全部</button>
+    <button class="sys-tab" onclick="filterSystems('sanshi', this)" data-i18n="sys.tab.sanshi">三式</button>
+    <button class="sys-tab" onclick="filterSystems('chinese', this)" data-i18n="sys.tab.chinese">中國</button>
+    <button class="sys-tab" onclick="filterSystems('western', this)" data-i18n="sys.tab.western">西方</button>
+    <button class="sys-tab" onclick="filterSystems('asian', this)" data-i18n="sys.tab.asian">亞洲</button>
+    <button class="sys-tab" onclick="filterSystems('mideast', this)" data-i18n="sys.tab.mideast">中東</button>
+    <button class="sys-tab" onclick="filterSystems('ancient', this)" data-i18n="sys.tab.ancient">古代文明</button>
   </div>
 
   <div class="systems-grid" id="systemsGrid">
@@ -585,14 +604,14 @@
       <div class="system-card-head">
         <div class="sys-icon">🔮</div>
         <div>
-          <div class="sys-name">六壬祿命</div>
+          <div class="sys-name" data-i18n="sys.liur.name">六壬祿命</div>
           <div class="sys-sub">Da Liu Ren / Six Ren Destiny</div>
         </div>
       </div>
-      <p class="sys-desc">古代三式之一，以天地盤推演吉凶。四課三傳、十二宮、論命分析（身命判斷、女命專論、二十四格、十六局、流年月令）。</p>
+      <p class="sys-desc" data-i18n="sys.liur.desc">古代三式之一，以天地盤推演吉凶。四課三傳、十二宮、論命分析（身命判斷、女命專論、二十四格、十六局、流年月令）。</p>
       <div class="sys-tags">
-        <span class="tag-zodiac">農曆</span>
-        <span class="tag-feature">四課三傳</span>
+        <span class="tag-zodiac" data-i18n="tag.lunar">農曆</span>
+        <span class="tag-feature" data-i18n="tag.4k3z">四課三傳</span>
       </div>
     </div>
 
@@ -600,14 +619,14 @@
       <div class="system-card-head">
         <div class="sys-icon">🌟</div>
         <div>
-          <div class="sys-name">太乙命法</div>
+          <div class="sys-name" data-i18n="sys.taiy.name">太乙命法</div>
           <div class="sys-sub">Taiyi Life Method</div>
         </div>
       </div>
-      <p class="sys-desc">古代三式之首，太乙神數以出生年月日時推算命運。命宮身宮、陽九百六行限、出身卦、五柱卦象分析。</p>
+      <p class="sys-desc" data-i18n="sys.taiy.desc">古代三式之首，太乙神數以出生年月日時推算命運。命宮身宮、陽九百六行限、出身卦、五柱卦象分析。</p>
       <div class="sys-tags">
-        <span class="tag-zodiac">農曆</span>
-        <span class="tag-feature">五柱卦象</span>
+        <span class="tag-zodiac" data-i18n="tag.lunar">農曆</span>
+        <span class="tag-feature" data-i18n="tag.5pillar">五柱卦象</span>
       </div>
     </div>
 
@@ -615,14 +634,14 @@
       <div class="system-card-head">
         <div class="sys-icon">🔮</div>
         <div>
-          <div class="sys-name">奇門祿命</div>
+          <div class="sys-name" data-i18n="sys.qimen.name">奇門祿命</div>
           <div class="sys-sub">Qimen Destiny Analysis</div>
         </div>
       </div>
-      <p class="sys-desc">以出生時辰的奇門遁甲局推斷一生吉凶禍福。六親分析、八門八神九星、格局推斷。</p>
+      <p class="sys-desc" data-i18n="sys.qimen.desc">以出生時辰的奇門遁甲局推斷一生吉凶禍福。六親分析、八門八神九星、格局推斷。</p>
       <div class="sys-tags">
-        <span class="tag-zodiac">農曆</span>
-        <span class="tag-feature">八門九星</span>
+        <span class="tag-zodiac" data-i18n="tag.lunar">農曆</span>
+        <span class="tag-feature" data-i18n="tag.8gate9star">八門九星</span>
       </div>
     </div>
 
@@ -631,14 +650,14 @@
       <div class="system-card-head">
         <div class="sys-icon">🀄</div>
         <div>
-          <div class="sys-name">七政四餘</div>
+          <div class="sys-name" data-i18n="sys.qzsy.name">七政四餘</div>
           <div class="sys-sub">Chinese Traditional Astrology</div>
         </div>
       </div>
-      <p class="sys-desc">中國千年傳承的占星術，以恆星黃道為基礎。含本命盤、神煞、年限大運、流時對盤、張果星宗（1060 條星宮語句、128 格局）、擇日工具。</p>
+      <p class="sys-desc" data-i18n="sys.qzsy.desc">中國千年傳承的占星術，以恆星黃道為基礎。含本命盤、神煞、年限大運、流時對盤、張果星宗（1060 條星宮語句、128 格局）、擇日工具。</p>
       <div class="sys-tags">
-        <span class="tag-zodiac">恆星黃道</span>
-        <span class="tag-feature">六個子分頁</span>
+        <span class="tag-zodiac" data-i18n="tag.sidereal">恆星黃道</span>
+        <span class="tag-feature" data-i18n="tag.6sub">六個子分頁</span>
       </div>
     </div>
 
@@ -646,14 +665,14 @@
       <div class="system-card-head">
         <div class="sys-icon">🌟</div>
         <div>
-          <div class="sys-name">紫微斗數</div>
+          <div class="sys-name" data-i18n="sys.zwds.name">紫微斗數</div>
           <div class="sys-sub">Zi Wei Dou Shu</div>
         </div>
       </div>
-      <p class="sys-desc">中國傳統命理學最重要的排盤體系之一。十四主星、十二宮位、五行局，以農曆生辰排盤。</p>
+      <p class="sys-desc" data-i18n="sys.zwds.desc">中國傳統命理學最重要的排盤體系之一。十四主星、十二宮位、五行局，以農曆生辰排盤。</p>
       <div class="sys-tags">
-        <span class="tag-zodiac">農曆</span>
-        <span class="tag-feature">十四主星</span>
+        <span class="tag-zodiac" data-i18n="tag.lunar">農曆</span>
+        <span class="tag-feature" data-i18n="tag.14stars">十四主星</span>
       </div>
     </div>
 
@@ -661,14 +680,14 @@
       <div class="system-card-head">
         <div class="sys-icon">🌠</div>
         <div>
-          <div class="sys-name">策天飛星紫微斗數</div>
+          <div class="sys-name" data-i18n="sys.ctfx.name">策天飛星紫微斗數</div>
           <div class="sys-sub">Ce Tian 18 Flying Stars</div>
         </div>
       </div>
-      <p class="sys-desc">紫微斗數的古法前身，源自明代。十八飛星（十一正曜 + 七副曜）、每宮必有正副曜、飛星四化、單宮獨斷。</p>
+      <p class="sys-desc" data-i18n="sys.ctfx.desc">紫微斗數的古法前身，源自明代。十八飛星（十一正曜 + 七副曜）、每宮必有正副曜、飛星四化、單宮獨斷。</p>
       <div class="sys-tags">
-        <span class="tag-zodiac">農曆</span>
-        <span class="tag-feature">十八飛星</span>
+        <span class="tag-zodiac" data-i18n="tag.lunar">農曆</span>
+        <span class="tag-feature" data-i18n="tag.18fly">十八飛星</span>
       </div>
     </div>
 
@@ -676,14 +695,14 @@
       <div class="system-card-head">
         <div class="sys-icon">🕊️</div>
         <div>
-          <div class="sys-name">萬化仙禽</div>
+          <div class="sys-name" data-i18n="sys.whxq.name">萬化仙禽</div>
           <div class="sys-sub">WanHua XianQin</div>
         </div>
       </div>
-      <p class="sys-desc">二十八宿禽星排盤，十二宮位、吞啗合戰、相胎賦、貴賤格。</p>
+      <p class="sys-desc" data-i18n="sys.whxq.desc">二十八宿禽星排盤，十二宮位、吞啗合戰、相胎賦、貴賤格。</p>
       <div class="sys-tags">
-        <span class="tag-zodiac">農曆</span>
-        <span class="tag-feature">二十八宿</span>
+        <span class="tag-zodiac" data-i18n="tag.lunar">農曆</span>
+        <span class="tag-feature" data-i18n="tag.28mansions">二十八宿</span>
       </div>
     </div>
 
@@ -691,14 +710,14 @@
       <div class="system-card-head">
         <div class="sys-icon">🔢</div>
         <div>
-          <div class="sys-name">十二星次</div>
+          <div class="sys-name" data-i18n="sys.sexc.name">十二星次</div>
           <div class="sys-sub">Twelve Ci / Jupiter Stations</div>
         </div>
       </div>
-      <p class="sys-desc">中國古代木星分野系統，以冬至點為黃道 0° 起點，將 360° 等分為十二次。SVG 環形盤視覺化。</p>
+      <p class="sys-desc" data-i18n="sys.sexc.desc">中國古代木星分野系統，以冬至點為黃道 0° 起點，將 360° 等分為十二次。SVG 環形盤視覺化。</p>
       <div class="sys-tags">
-        <span class="tag-zodiac">回歸黃道</span>
-        <span class="tag-feature">木星分野</span>
+        <span class="tag-zodiac" data-i18n="tag.tropical">回歸黃道</span>
+        <span class="tag-feature" data-i18n="tag.jupiter">木星分野</span>
       </div>
     </div>
 
@@ -706,14 +725,14 @@
       <div class="system-card-head">
         <div class="sys-icon">🖐️</div>
         <div>
-          <div class="sys-name">達摩一掌經</div>
+          <div class="sys-name" data-i18n="sys.dmyz.name">達摩一掌經</div>
           <div class="sys-sub">Damo One Palm Scripture</div>
         </div>
       </div>
-      <p class="sys-desc">十二宮掌紋、前世今生六道、四柱星宮推算，含互動手掌 SVG 視覺化。</p>
+      <p class="sys-desc" data-i18n="sys.dmyz.desc">十二宮掌紋、前世今生六道、四柱星宮推算，含互動手掌 SVG 視覺化。</p>
       <div class="sys-tags">
-        <span class="tag-zodiac">農曆</span>
-        <span class="tag-feature">六道推演</span>
+        <span class="tag-zodiac" data-i18n="tag.lunar">農曆</span>
+        <span class="tag-feature" data-i18n="tag.sixrealms">六道推演</span>
       </div>
     </div>
 
@@ -722,14 +741,14 @@
       <div class="system-card-head">
         <div class="sys-icon">🌍</div>
         <div>
-          <div class="sys-name">西洋占星</div>
+          <div class="sys-name" data-i18n="sys.west.name">西洋占星</div>
           <div class="sys-sub">Western Astrology</div>
         </div>
       </div>
-      <p class="sys-desc">全球最流行的占星體系。本命盤輪圖、行星過運、太陽回歸、合盤比較、Ptolemy 尊貴、恆星合相、小行星。</p>
+      <p class="sys-desc" data-i18n="sys.west.desc">全球最流行的占星體系。本命盤輪圖、行星過運、太陽回歸、合盤比較、Ptolemy 尊貴、恆星合相、小行星。</p>
       <div class="sys-tags">
-        <span class="tag-zodiac">回歸黃道</span>
-        <span class="tag-feature">五個子分頁</span>
+        <span class="tag-zodiac" data-i18n="tag.tropical">回歸黃道</span>
+        <span class="tag-feature" data-i18n="tag.5sub">五個子分頁</span>
       </div>
     </div>
 
@@ -737,14 +756,14 @@
       <div class="system-card-head">
         <div class="sys-icon">🏺</div>
         <div>
-          <div class="sys-name">希臘占星</div>
+          <div class="sys-name" data-i18n="sys.hellen.name">希臘占星</div>
           <div class="sys-sub">Hellenistic Astrology</div>
         </div>
       </div>
-      <p class="sys-desc">Greek Lots（Fortune、Spirit 等）、Egyptian Bounds、Annual Profections、Zodiacal Releasing、擴充 Lots、Valens Synkrasis、百論。</p>
+      <p class="sys-desc" data-i18n="sys.hellen.desc">Greek Lots（Fortune、Spirit 等）、Egyptian Bounds、Annual Profections、Zodiacal Releasing、擴充 Lots、Valens Synkrasis、百論。</p>
       <div class="sys-tags">
-        <span class="tag-zodiac">回歸黃道</span>
-        <span class="tag-feature">八個子分頁</span>
+        <span class="tag-zodiac" data-i18n="tag.tropical">回歸黃道</span>
+        <span class="tag-feature" data-i18n="tag.8sub">八個子分頁</span>
       </div>
     </div>
 
@@ -752,14 +771,14 @@
       <div class="system-card-head">
         <div class="sys-icon">✡</div>
         <div>
-          <div class="sys-name">卡巴拉占星</div>
+          <div class="sys-name" data-i18n="sys.kab.name">卡巴拉占星</div>
           <div class="sys-sub">Kabbalah Astrology</div>
         </div>
       </div>
-      <p class="sys-desc">結合猶太神祕主義與占星術。生命之樹、二十二希伯來字母、塔羅大牌對應。</p>
+      <p class="sys-desc" data-i18n="sys.kab.desc">結合猶太神祕主義與占星術。生命之樹、二十二希伯來字母、塔羅大牌對應。</p>
       <div class="sys-tags">
-        <span class="tag-zodiac">回歸黃道</span>
-        <span class="tag-feature">生命之樹</span>
+        <span class="tag-zodiac" data-i18n="tag.tropical">回歸黃道</span>
+        <span class="tag-feature" data-i18n="tag.treelife">生命之樹</span>
       </div>
     </div>
 
@@ -767,14 +786,14 @@
       <div class="system-card-head">
         <div class="sys-icon">✡</div>
         <div>
-          <div class="sys-name">猶太 Mazzalot</div>
+          <div class="sys-name" data-i18n="sys.mazz.name">猶太 Mazzalot</div>
           <div class="sys-sub">Jewish Mazzalot Astrology</div>
         </div>
       </div>
-      <p class="sys-desc">源自 Talmud 與 Sefer Yetzirah 的猶太傳統黃道體系。大衛之星盤、十二支派、希伯來字母對應。</p>
+      <p class="sys-desc" data-i18n="sys.mazz.desc">源自 Talmud 與 Sefer Yetzirah 的猶太傳統黃道體系。大衛之星盤、十二支派、希伯來字母對應。</p>
       <div class="sys-tags">
-        <span class="tag-zodiac">恆星黃道</span>
-        <span class="tag-feature">大衛之星</span>
+        <span class="tag-zodiac" data-i18n="tag.sidereal">恆星黃道</span>
+        <span class="tag-feature" data-i18n="tag.stardavid">大衛之星</span>
       </div>
     </div>
 
@@ -782,14 +801,14 @@
       <div class="system-card-head">
         <div class="sys-icon">🗺️</div>
         <div>
-          <div class="sys-name">Astrocartography 地點占星</div>
+          <div class="sys-name" data-i18n="sys.acg.name">Astrocartography 地點占星</div>
           <div class="sys-sub">Astrocartography / Relocation</div>
         </div>
       </div>
-      <p class="sys-desc">行星位置投射至全球地圖，顯示 AC/MC/IC/DC 搬遷線。Plotly 互動地圖、過運搬遷線。</p>
+      <p class="sys-desc" data-i18n="sys.acg.desc">行星位置投射至全球地圖，顯示 AC/MC/IC/DC 搬遷線。Plotly 互動地圖、過運搬遷線。</p>
       <div class="sys-tags">
-        <span class="tag-zodiac">回歸黃道</span>
-        <span class="tag-feature">互動地圖</span>
+        <span class="tag-zodiac" data-i18n="tag.tropical">回歸黃道</span>
+        <span class="tag-feature" data-i18n="tag.imap">互動地圖</span>
       </div>
     </div>
 
@@ -798,14 +817,14 @@
       <div class="system-card-head">
         <div class="sys-icon">🙏</div>
         <div>
-          <div class="sys-name">印度占星 Jyotish</div>
+          <div class="sys-name" data-i18n="sys.vedic.name">印度占星 Jyotish</div>
           <div class="sys-sub">Vedic Astrology</div>
         </div>
       </div>
-      <p class="sys-desc">古老印度占星體系。星座盤（南印度/北印度）、Vimshottari 大運、Ashtakavarga、Yogas、BPHS、16 Varga 分盤。</p>
+      <p class="sys-desc" data-i18n="sys.vedic.desc">古老印度占星體系。星座盤（南印度/北印度）、Vimshottari 大運、Ashtakavarga、Yogas、BPHS、16 Varga 分盤。</p>
       <div class="sys-tags">
-        <span class="tag-zodiac">恆星黃道</span>
-        <span class="tag-feature">六個子分頁</span>
+        <span class="tag-zodiac" data-i18n="tag.sidereal">恆星黃道</span>
+        <span class="tag-feature" data-i18n="tag.6sub">六個子分頁</span>
       </div>
     </div>
 
@@ -813,14 +832,14 @@
       <div class="system-card-head">
         <div class="sys-icon">🔱</div>
         <div>
-          <div class="sys-name">納迪占星</div>
+          <div class="sys-name" data-i18n="sys.nadi.name">納迪占星</div>
           <div class="sys-sub">Nadi Astrology</div>
         </div>
       </div>
-      <p class="sys-desc">三大脈輪、27 星宿、納迪宮分，印度古老預言系統。</p>
+      <p class="sys-desc" data-i18n="sys.nadi.desc">三大脈輪、27 星宿、納迪宮分，印度古老預言系統。</p>
       <div class="sys-tags">
-        <span class="tag-zodiac">恆星黃道</span>
-        <span class="tag-feature">27 星宿</span>
+        <span class="tag-zodiac" data-i18n="tag.sidereal">恆星黃道</span>
+        <span class="tag-feature" data-i18n="tag.27nak">27 星宿</span>
       </div>
     </div>
 
@@ -828,13 +847,13 @@
       <div class="system-card-head">
         <div class="sys-icon">🕉️</div>
         <div>
-          <div class="sys-name">Jaimini 占星</div>
+          <div class="sys-name" data-i18n="sys.jaim.name">Jaimini 占星</div>
           <div class="sys-sub">Jaimini Astrology</div>
         </div>
       </div>
-      <p class="sys-desc">Chara Karaka、Rashi Drishti、Argala、Arudha Pada、Chara Dasha。</p>
+      <p class="sys-desc" data-i18n="sys.jaim.desc">Chara Karaka、Rashi Drishti、Argala、Arudha Pada、Chara Dasha。</p>
       <div class="sys-tags">
-        <span class="tag-zodiac">恆星黃道</span>
+        <span class="tag-zodiac" data-i18n="tag.sidereal">恆星黃道</span>
         <span class="tag-feature">Chara Dasha</span>
       </div>
     </div>
@@ -843,14 +862,14 @@
       <div class="system-card-head">
         <div class="sys-icon">🈳</div>
         <div>
-          <div class="sys-name">宿曜道</div>
+          <div class="sys-name" data-i18n="sys.sukk.name">宿曜道</div>
           <div class="sys-sub">Japanese Sukkayodo</div>
         </div>
       </div>
-      <p class="sys-desc">9 世紀由空海大師傳入日本。二十八宿、六曜、方盤排列。</p>
+      <p class="sys-desc" data-i18n="sys.sukk.desc">9 世紀由空海大師傳入日本。二十八宿、六曜、方盤排列。</p>
       <div class="sys-tags">
-        <span class="tag-zodiac">恆星黃道</span>
-        <span class="tag-feature">六曜</span>
+        <span class="tag-zodiac" data-i18n="tag.sidereal">恆星黃道</span>
+        <span class="tag-feature" data-i18n="tag.6lum">六曜</span>
       </div>
     </div>
 
@@ -858,14 +877,14 @@
       <div class="system-card-head">
         <div class="sys-icon">🐘</div>
         <div>
-          <div class="sys-name">泰國占星</div>
+          <div class="sys-name" data-i18n="sys.thai.name">泰國占星</div>
           <div class="sys-sub">Thai Astrology</div>
         </div>
       </div>
-      <p class="sys-desc">以印度 Jyotish 為基礎，融合泰國佛教文化。泰式方盤、九宮格、พรหมชาติ 命理。</p>
+      <p class="sys-desc" data-i18n="sys.thai.desc">以印度 Jyotish 為基礎，融合泰國佛教文化。泰式方盤、九宮格、พรหมชาติ 命理。</p>
       <div class="sys-tags">
-        <span class="tag-zodiac">恆星黃道</span>
-        <span class="tag-feature">九宮格</span>
+        <span class="tag-zodiac" data-i18n="tag.sidereal">恆星黃道</span>
+        <span class="tag-feature" data-i18n="tag.9grid">九宮格</span>
       </div>
     </div>
 
@@ -873,14 +892,14 @@
       <div class="system-card-head">
         <div class="sys-icon">🇲🇲</div>
         <div>
-          <div class="sys-name">緬甸 Mahabote</div>
+          <div class="sys-name" data-i18n="sys.myan.name">緬甸 Mahabote</div>
           <div class="sys-sub">Myanmar Astrology</div>
         </div>
       </div>
-      <p class="sys-desc">緬甸獨特的星期制占星法。八方位、七宮、行星大運。</p>
+      <p class="sys-desc" data-i18n="sys.myan.desc">緬甸獨特的星期制占星法。八方位、七宮、行星大運。</p>
       <div class="sys-tags">
-        <span class="tag-zodiac">星期制</span>
-        <span class="tag-feature">八方位</span>
+        <span class="tag-zodiac" data-i18n="tag.weekday">星期制</span>
+        <span class="tag-feature" data-i18n="tag.8dir">八方位</span>
       </div>
     </div>
 
@@ -888,14 +907,14 @@
       <div class="system-card-head">
         <div class="sys-icon">🇲🇳</div>
         <div>
-          <div class="sys-name">祖爾海</div>
+          <div class="sys-name" data-i18n="sys.zurk.name">祖爾海</div>
           <div class="sys-sub">Mongolian Zurkhai</div>
         </div>
       </div>
-      <p class="sys-desc">蒙古傳統占星術。12 生肖、五行、擇吉。</p>
+      <p class="sys-desc" data-i18n="sys.zurk.desc">蒙古傳統占星術。12 生肖、五行、擇吉。</p>
       <div class="sys-tags">
-        <span class="tag-zodiac">藏曆</span>
-        <span class="tag-feature">擇吉</span>
+        <span class="tag-zodiac" data-i18n="tag.tibcal">藏曆</span>
+        <span class="tag-feature" data-i18n="tag.auspic">擇吉</span>
       </div>
     </div>
 
@@ -903,14 +922,14 @@
       <div class="system-card-head">
         <div class="sys-icon">🏝️</div>
         <div>
-          <div class="sys-name">巴厘 Wariga</div>
+          <div class="sys-name" data-i18n="sys.bali.name">巴厘 Wariga</div>
           <div class="sys-sub">Balinese Wariga Calendar</div>
         </div>
       </div>
-      <p class="sys-desc">巴厘島傳統曆法系統。Wuku 210天週期、Wewaran 九層週期、Neptu 數值、吉凶判斷。</p>
+      <p class="sys-desc" data-i18n="sys.bali.desc">巴厘島傳統曆法系統。Wuku 210天週期、Wewaran 九層週期、Neptu 數值、吉凶判斷。</p>
       <div class="sys-tags">
-        <span class="tag-zodiac">巴厘曆</span>
-        <span class="tag-feature">Wuku 週期</span>
+        <span class="tag-zodiac" data-i18n="tag.balical">巴厘曆</span>
+        <span class="tag-feature" data-i18n="tag.wuku">Wuku 週期</span>
       </div>
     </div>
 
@@ -918,14 +937,14 @@
       <div class="system-card-head">
         <div class="sys-icon">🏔️</div>
         <div>
-          <div class="sys-name">藏傳時輪金剛</div>
+          <div class="sys-name" data-i18n="sys.tib.name">藏傳時輪金剛</div>
           <div class="sys-sub">Tibetan Kalachakra</div>
         </div>
       </div>
-      <p class="sys-desc">Mewa 九宮、Parkha 八卦、五力系統、時輪金剛曼荼羅。</p>
+      <p class="sys-desc" data-i18n="sys.tib.desc">Mewa 九宮、Parkha 八卦、五力系統、時輪金剛曼荼羅。</p>
       <div class="sys-tags">
-        <span class="tag-zodiac">藏曆</span>
-        <span class="tag-feature">Mewa 九宮</span>
+        <span class="tag-zodiac" data-i18n="tag.tibcal">藏曆</span>
+        <span class="tag-feature" data-i18n="tag.mewa">Mewa 九宮</span>
       </div>
     </div>
 
@@ -934,14 +953,14 @@
       <div class="system-card-head">
         <div class="sys-icon">☪</div>
         <div>
-          <div class="sys-name">阿拉伯占星</div>
+          <div class="sys-name" data-i18n="sys.arab.name">阿拉伯占星</div>
           <div class="sys-sub">Arabic Astrology</div>
         </div>
       </div>
-      <p class="sys-desc">源自中世紀伊斯蘭黃金時代。阿拉伯點、Picatrix 星體魔法、太陽知識大全、MS164 手稿。</p>
+      <p class="sys-desc" data-i18n="sys.arab.desc">源自中世紀伊斯蘭黃金時代。阿拉伯點、Picatrix 星體魔法、太陽知識大全、MS164 手稿。</p>
       <div class="sys-tags">
-        <span class="tag-zodiac">回歸黃道</span>
-        <span class="tag-feature">五個子分頁</span>
+        <span class="tag-zodiac" data-i18n="tag.tropical">回歸黃道</span>
+        <span class="tag-feature" data-i18n="tag.5sub">五個子分頁</span>
       </div>
     </div>
 
@@ -949,14 +968,14 @@
       <div class="system-card-head">
         <div class="sys-icon">🕌</div>
         <div>
-          <div class="sys-name">也門占星</div>
+          <div class="sys-name" data-i18n="sys.yem.name">也門占星</div>
           <div class="sys-sub">Yemeni / Rasulid</div>
         </div>
       </div>
-      <p class="sys-desc">南阿拉伯半島古老傳統。28 月宿護符魔法、Anwāʼ 天氣預兆、Firdaria 週期。</p>
+      <p class="sys-desc" data-i18n="sys.yem.desc">南阿拉伯半島古老傳統。28 月宿護符魔法、Anwāʼ 天氣預兆、Firdaria 週期。</p>
       <div class="sys-tags">
-        <span class="tag-zodiac">恆星黃道</span>
-        <span class="tag-feature">月宿護符</span>
+        <span class="tag-zodiac" data-i18n="tag.sidereal">恆星黃道</span>
+        <span class="tag-feature" data-i18n="tag.lunartalis">月宿護符</span>
       </div>
     </div>
 
@@ -965,13 +984,13 @@
       <div class="system-card-head">
         <div class="sys-icon">🏺</div>
         <div>
-          <div class="sys-name">瑪雅占星</div>
+          <div class="sys-name" data-i18n="sys.maya.name">瑪雅占星</div>
           <div class="sys-sub">Maya Astrology</div>
         </div>
       </div>
-      <p class="sys-desc">瓜地馬拉瑪雅文明的曆法與占星。Tzolkin 神聖曆、Haab 民用曆、Long Count 長紀年。</p>
+      <p class="sys-desc" data-i18n="sys.maya.desc">瓜地馬拉瑪雅文明的曆法與占星。Tzolkin 神聖曆、Haab 民用曆、Long Count 長紀年。</p>
       <div class="sys-tags">
-        <span class="tag-zodiac">瑪雅曆</span>
+        <span class="tag-zodiac" data-i18n="tag.mayacal">瑪雅曆</span>
         <span class="tag-feature">Tzolkin</span>
       </div>
     </div>
@@ -980,14 +999,14 @@
       <div class="system-card-head">
         <div class="sys-icon">🦅</div>
         <div>
-          <div class="sys-name">阿茲特克占星</div>
+          <div class="sys-name" data-i18n="sys.aztec.name">阿茲特克占星</div>
           <div class="sys-sub">Aztec Astrology</div>
         </div>
       </div>
-      <p class="sys-desc">阿茲特克文明曆法占星。Tonalpohualli 占卜曆、Trecena 13 天週期、守護神祇。</p>
+      <p class="sys-desc" data-i18n="sys.aztec.desc">阿茲特克文明曆法占星。Tonalpohualli 占卜曆、Trecena 13 天週期、守護神祇。</p>
       <div class="sys-tags">
-        <span class="tag-zodiac">阿茲特克曆</span>
-        <span class="tag-feature">守護神祇</span>
+        <span class="tag-zodiac" data-i18n="tag.azteccal">阿茲特克曆</span>
+        <span class="tag-feature" data-i18n="tag.patron">守護神祇</span>
       </div>
     </div>
 
@@ -995,13 +1014,13 @@
       <div class="system-card-head">
         <div class="sys-icon">🏛️</div>
         <div>
-          <div class="sys-name">古埃及十度區間</div>
+          <div class="sys-name" data-i18n="sys.egypt.name">古埃及十度區間</div>
           <div class="sys-sub">Egyptian Decans</div>
         </div>
       </div>
-      <p class="sys-desc">36 Decans 十度區間、塔羅對應、Dendera 輪盤圖。</p>
+      <p class="sys-desc" data-i18n="sys.egypt.desc">36 Decans 十度區間、塔羅對應、Dendera 輪盤圖。</p>
       <div class="sys-tags">
-        <span class="tag-zodiac">回歸黃道</span>
+        <span class="tag-zodiac" data-i18n="tag.tropical">回歸黃道</span>
         <span class="tag-feature">36 Decans</span>
       </div>
     </div>
@@ -1010,13 +1029,13 @@
       <div class="system-card-head">
         <div class="sys-icon">🏛️</div>
         <div>
-          <div class="sys-name">巴比倫占星</div>
+          <div class="sys-name" data-i18n="sys.bab.name">巴比倫占星</div>
           <div class="sys-sub">Babylonian Astrology</div>
         </div>
       </div>
-      <p class="sys-desc">MUL.APIN 星表、K.8538 星盤、Enūma Anu Enlil 預兆。</p>
+      <p class="sys-desc" data-i18n="sys.bab.desc">MUL.APIN 星表、K.8538 星盤、Enūma Anu Enlil 預兆。</p>
       <div class="sys-tags">
-        <span class="tag-zodiac">恆星黃道</span>
+        <span class="tag-zodiac" data-i18n="tag.sidereal">恆星黃道</span>
         <span class="tag-feature">MUL.APIN</span>
       </div>
     </div>
@@ -1027,9 +1046,9 @@
 <!-- ── Tech Stack ── -->
 <section class="features" id="tech">
   <div class="section-header">
-    <span class="section-tag">🛠️ 技術棧 Tech Stack</span>
-    <h2>可靠的技術基礎</h2>
-    <p>基於成熟的開源框架構建</p>
+    <span class="section-tag" data-i18n="tech.tag">🛠️ 技術棧 Tech Stack</span>
+    <h2 data-i18n="tech.title">可靠的技術基礎</h2>
+    <p data-i18n="tech.desc">基於成熟的開源框架構建</p>
   </div>
   <div class="tech-stack">
     <div class="tech-grid">
@@ -1046,18 +1065,18 @@
 <!-- ── CTA ── -->
 <section class="demo-section">
   <div class="demo-inner">
-    <h2>開始你的星象之旅</h2>
+    <h2 data-i18n="cta.title">開始你的星象之旅</h2>
     <p>
-      免費、開源、無需安裝——只需打開瀏覽器，即可使用全球最全面的多體系占星排盤平台。
+      <span data-i18n="cta.desc">免費、開源、無需安裝——只需打開瀏覽器，即可使用全球最全面的多體系占星排盤平台。</span>
     </p>
     <div class="demo-buttons">
-      <a class="btn-primary" href="https://kinastro.streamlit.app" target="_blank" rel="noopener">
+      <a class="btn-primary" href="https://kinastro.streamlit.app" target="_blank" rel="noopener" data-i18n="cta.btn.start">
         🚀 立即使用 Start Now
       </a>
-      <a class="btn-secondary" href="https://github.com/kentang2017/kinastro" target="_blank" rel="noopener">
+      <a class="btn-secondary" href="https://github.com/kentang2017/kinastro" target="_blank" rel="noopener" data-i18n="cta.btn.docs">
         📖 查看文檔 Documentation
       </a>
-      <a class="btn-secondary" href="https://github.com/sponsors/kentang2017" target="_blank" rel="noopener">
+      <a class="btn-secondary" href="https://github.com/sponsors/kentang2017" target="_blank" rel="noopener" data-i18n="cta.btn.sponsor">
         💛 贊助支持 Sponsor
       </a>
     </div>
@@ -1067,8 +1086,8 @@
 <!-- ── Footer ── -->
 <footer class="footer">
   <div class="footer-logo">⭐ 堅占星 Kin Astro</div>
-  <p>二十九體系占星排盤平台 — 千年星學智慧，一鍵觸手可及。</p>
-  <p>
+  <p data-i18n="footer.desc">二十九體系占星排盤平台 — 千年星學智慧，一鍵觸手可及。</p>
+  <p data-i18n-html="footer.author">
     由 <a href="https://github.com/kentang2017" target="_blank" rel="noopener">kentang2017</a> 開發維護
     &nbsp;·&nbsp;
     微信：<strong>gnatnek</strong>
@@ -1076,14 +1095,15 @@
     公眾號：探究三式
   </p>
   <div class="footer-links">
-    <a href="https://kinastro.streamlit.app" target="_blank" rel="noopener">線上使用</a>
+    <a href="https://kinastro.streamlit.app" target="_blank" rel="noopener" data-i18n="footer.link.use">線上使用</a>
     <a href="https://github.com/kentang2017/kinastro" target="_blank" rel="noopener">GitHub</a>
-    <a href="https://kentang2017.github.io/" target="_blank" rel="noopener">所有專案</a>
-    <a href="https://github.com/sponsors/kentang2017" target="_blank" rel="noopener">贊助支持</a>
+    <a href="https://kentang2017.github.io/" target="_blank" rel="noopener" data-i18n="footer.link.projects">所有專案</a>
+    <a href="https://github.com/sponsors/kentang2017" target="_blank" rel="noopener" data-i18n="footer.link.sponsor">贊助支持</a>
   </div>
 </footer>
 
 <script>
+/* ── system filter ── */
 function filterSystems(cat, btn) {
   var cards = document.querySelectorAll('.system-card');
   cards.forEach(function(card) {
@@ -1097,6 +1117,212 @@ function filterSystems(cat, btn) {
   tabs.forEach(function(t) { t.classList.remove('active'); });
   btn.classList.add('active');
 }
+
+/* ── i18n translations ── */
+var translations = {
+  'nav.features':    { zh: '特色功能', en: 'Features' },
+  'nav.systems':     { zh: '占星體系', en: 'Systems' },
+  'nav.tech':        { zh: '技術棧', en: 'Tech Stack' },
+  'nav.projects':    { zh: '所有專案', en: 'All Projects' },
+  'nav.cta':         { zh: '🚀 立即使用', en: '🚀 Start Now' },
+  'nav.toggle':      { zh: '選單', en: 'Menu' },
+
+  'hero.badge':      { zh: '線上免費使用 · Open Source · MIT License', en: 'Free Online · Open Source · MIT License' },
+  'hero.title':      { zh: '二十九體系占星排盤平台', en: '29-System Astrology Charting Platform' },
+  'hero.subtitle':   { zh: '從七政四餘到西洋占星、從紫微斗數到印度 Jyotish、從三式（六壬、太乙、奇門）到 Astrocartography、從瑪雅曆法到巴比倫星表——<br/>堅占星將全球二十九種占星體系融合為一，讓千年星學智慧觸手可及。', en: 'From Chinese Seven Luminaries to Western Astrology, from Zi Wei Dou Shu to Vedic Jyotish, from Three Formulae (Liu Ren, Taiyi, Qimen) to Astrocartography, from Maya Calendar to Babylonian Star Tablets —<br/>Kin Astro unifies 29 astrology systems worldwide, making millennia of celestial wisdom accessible at your fingertips.' },
+  'hero.btn.start':  { zh: '🔮 開始排盤 Start Charting', en: '🔮 Start Charting' },
+  'hero.btn.github': { zh: '⭐ GitHub 原始碼', en: '⭐ GitHub Source' },
+  'hero.stat.systems':  { zh: '占星體系 Systems', en: 'Systems' },
+  'hero.stat.subtabs':  { zh: '子功能分頁 Sub-tabs', en: 'Sub-tabs' },
+  'hero.stat.analysis': { zh: '智慧分析 Analysis', en: 'AI Analysis' },
+  'hero.stat.bilingual':{ zh: '雙語介面 Bilingual', en: 'Bilingual' },
+
+  'feat.tag':   { zh: '✨ 特色亮點 Highlights', en: '✨ Highlights' },
+  'feat.title': { zh: '為什麼選擇堅占星？', en: 'Why Kin Astro?' },
+  'feat.desc':  { zh: '一站式排盤平台，集合古今中外占星智慧，涵蓋三式、中國、西方、亞洲、中東及古代文明', en: 'An all-in-one charting platform uniting astrology traditions worldwide — Three Formulae, Chinese, Western, Asian, Middle Eastern & Ancient' },
+  'feat.1.t': { zh: '二十九體系合一', en: '29 Systems in One' },
+  'feat.1.d': { zh: '在同一個介面中切換中國七政四餘、紫微斗數、六壬太乙奇門三式、西洋占星、印度 Vedic、瑪雅曆法等二十九種占星體系，無需來回切換工具。', en: 'Switch between Chinese Seven Luminaries, Zi Wei Dou Shu, Three Formulae (Liu Ren, Taiyi, Qimen), Western Astrology, Vedic, Maya Calendar and 29 more systems in a single interface — no need to juggle multiple tools.' },
+  'feat.2.t': { zh: '精密天文計算', en: 'Precision Astronomy' },
+  'feat.2.d': { zh: '使用瑞士星曆表 (Swiss Ephemeris) pyswisseph 進行高精度天文運算，確保行星位置精確無誤。', en: 'Powered by Swiss Ephemeris (pyswisseph) for high-accuracy planetary calculations, ensuring precise positions.' },
+  'feat.3.t': { zh: 'AI 智慧分析', en: 'AI Analysis' },
+  'feat.3.d': { zh: '整合LLM，一鍵生成命盤深度解讀報告，助你快速理解星象含義。', en: 'Integrated LLM generates in-depth chart interpretation reports with one click, helping you quickly understand celestial patterns.' },
+  'feat.4.t': { zh: '全球化城市支援', en: 'Global City Support' },
+  'feat.4.d': { zh: '內建全球多個主要城市座標，亦支援自訂經緯度，隨時隨地為任何地點排盤。', en: 'Built-in coordinates for major cities worldwide, with custom latitude/longitude input for charting any location.' },
+  'feat.5.t': { zh: '中英雙語介面', en: 'Bilingual Interface' },
+  'feat.5.d': { zh: '完整的中文與英文雙語支援，無論你的母語是什麼，都能輕鬆使用。', en: 'Full Chinese and English support — easy to use regardless of your native language.' },
+  'feat.6.t': { zh: '響應式設計', en: 'Responsive Design' },
+  'feat.6.d': { zh: '適配桌面與移動設備，手機、平板、電腦皆可流暢使用，隨時查閱星盤。', en: 'Adapts to desktop and mobile devices — use on phone, tablet, or computer anytime.' },
+  'feat.7.t': { zh: 'REST API 後端', en: 'REST API Backend' },
+  'feat.7.d': { zh: 'FastAPI 後端提供所有體系的 JSON 計算 API，可獨立部署，方便開發者整合。', en: 'FastAPI backend provides JSON computation APIs for all systems, deployable independently for developer integration.' },
+  'feat.8.t': { zh: '儲存與匯出', en: 'Save & Export' },
+  'feat.8.d': { zh: '儲存、載入排盤參數，並支援 TXT、CSV、PDF 三種格式匯出，輕鬆保存分析結果。', en: 'Save and load chart parameters, export in TXT, CSV, or PDF formats to preserve your analysis.' },
+  'feat.9.t': { zh: '開源免費', en: 'Free & Open Source' },
+  'feat.9.d': { zh: 'MIT 授權，完整原始碼公開於 GitHub，任何人都可以自由使用、修改與擴展。', en: 'MIT-licensed with full source code on GitHub — anyone can freely use, modify, and extend.' },
+
+  'sys.tag':   { zh: '🧭 體系總覽 Systems at a Glance', en: '🧭 Systems at a Glance' },
+  'sys.title': { zh: '二十九種占星體系', en: '29 Astrology Systems' },
+  'sys.desc':  { zh: '熱門 → 三式 → 中國 → 西方 → 亞洲 → 中東 → 古代文明', en: 'Popular → Three Formulae → Chinese → Western → Asian → Middle East → Ancient Civilizations' },
+  'sys.tab.all':     { zh: '全部', en: 'All' },
+  'sys.tab.sanshi':  { zh: '三式', en: 'Three Formulae' },
+  'sys.tab.chinese': { zh: '中國', en: 'Chinese' },
+  'sys.tab.western': { zh: '西方', en: 'Western' },
+  'sys.tab.asian':   { zh: '亞洲', en: 'Asian' },
+  'sys.tab.mideast': { zh: '中東', en: 'Middle East' },
+  'sys.tab.ancient': { zh: '古代文明', en: 'Ancient' },
+
+  'sys.liur.name':  { zh: '六壬祿命', en: 'Liu Ren Destiny' },
+  'sys.liur.desc':  { zh: '古代三式之一，以天地盤推演吉凶。四課三傳、十二宮、論命分析（身命判斷、女命專論、二十四格、十六局、流年月令）。', en: 'One of the ancient Three Formulae, using heaven-earth boards to divine fortune. Four Lessons & Three Transmissions, 12 palaces, destiny analysis (body-fate judgment, female-specific readings, 24 patterns, 16 configurations, annual/monthly periods).' },
+  'sys.taiy.name':  { zh: '太乙命法', en: 'Taiyi Life Method' },
+  'sys.taiy.desc':  { zh: '古代三式之首，太乙神數以出生年月日時推算命運。命宮身宮、陽九百六行限、出身卦、五柱卦象分析。', en: 'Foremost of the ancient Three Formulae; Taiyi divine numbers calculate destiny from birth date-time. Life Palace & Body Palace, Yang-Nine & Hundred-Six periods, birth hexagram, Five-Pillar hexagram analysis.' },
+  'sys.qimen.name': { zh: '奇門祿命', en: 'Qimen Destiny' },
+  'sys.qimen.desc': { zh: '以出生時辰的奇門遁甲局推斷一生吉凶禍福。六親分析、八門八神九星、格局推斷。', en: "Uses the Qimen Dunjia board at one's birth hour to determine lifelong fortune. Six Relations analysis, Eight Gates, Eight Spirits, Nine Stars, pattern delineation." },
+  'sys.qzsy.name':  { zh: '七政四餘', en: 'Seven Luminaries' },
+  'sys.qzsy.desc':  { zh: '中國千年傳承的占星術，以恆星黃道為基礎。含本命盤、神煞、年限大運、流時對盤、張果星宗（1060 條星宮語句、128 格局）、擇日工具。', en: "China's millennia-old astrology based on sidereal zodiac. Includes natal chart, divine sha, major periods, transit overlay, Zhang Guo Xing Zong (1060 star-palace statements, 128 patterns), and day-selection tools." },
+  'sys.zwds.name':  { zh: '紫微斗數', en: 'Zi Wei Dou Shu' },
+  'sys.zwds.desc':  { zh: '中國傳統命理學最重要的排盤體系之一。十四主星、十二宮位、五行局，以農曆生辰排盤。', en: 'One of the most important charting systems in Chinese traditional destiny studies. 14 main stars, 12 palaces, Five-Element groups — charts cast using lunar birth data.' },
+  'sys.ctfx.name':  { zh: '策天飛星紫微斗數', en: 'Ce Tian Flying Stars' },
+  'sys.ctfx.desc':  { zh: '紫微斗數的古法前身，源自明代。十八飛星（十一正曜 + 七副曜）、每宮必有正副曜、飛星四化、單宮獨斷。', en: 'The ancient predecessor of Zi Wei Dou Shu from the Ming dynasty. 18 Flying Stars (11 main + 7 auxiliary), each palace has both types, Flying Star Four Transformations, single-palace delineation.' },
+  'sys.whxq.name':  { zh: '萬化仙禽', en: 'WanHua XianQin' },
+  'sys.whxq.desc':  { zh: '二十八宿禽星排盤，十二宮位、吞啗合戰、相胎賦、貴賤格。', en: '28 Lunar Mansion animal-star charting, 12 palaces, Tun-Dan combinations, Xiang-Tai verses, noble/humble patterns.' },
+  'sys.sexc.name':  { zh: '十二星次', en: 'Twelve Jupiter Stations' },
+  'sys.sexc.desc':  { zh: '中國古代木星分野系統，以冬至點為黃道 0° 起點，將 360° 等分為十二次。SVG 環形盤視覺化。', en: "Ancient Chinese Jupiter-station system; winter solstice marks ecliptic 0°, dividing 360° into 12 Ci. SVG ring chart visualization." },
+  'sys.dmyz.name':  { zh: '達摩一掌經', en: 'Damo One Palm' },
+  'sys.dmyz.desc':  { zh: '十二宮掌紋、前世今生六道、四柱星宮推算，含互動手掌 SVG 視覺化。', en: '12-palace palm reading, six realms of past and present lives, four-pillar star-palace calculations. Interactive palm SVG visualization.' },
+  'sys.west.name':  { zh: '西洋占星', en: 'Western Astrology' },
+  'sys.west.desc':  { zh: '全球最流行的占星體系。本命盤輪圖、行星過運、太陽回歸、合盤比較、Ptolemy 尊貴、恆星合相、小行星。', en: "The world's most popular astrology system. Natal wheel chart, planetary transits, solar return, synastry comparison, Ptolemy dignities, fixed-star conjunctions, asteroids." },
+  'sys.hellen.name':{ zh: '希臘占星', en: 'Hellenistic Astrology' },
+  'sys.hellen.desc':{ zh: 'Greek Lots（Fortune、Spirit 等）、Egyptian Bounds、Annual Profections、Zodiacal Releasing、擴充 Lots、Valens Synkrasis、百論。', en: 'Greek Lots (Fortune, Spirit, etc.), Egyptian Bounds, Annual Profections, Zodiacal Releasing, extended Lots, Valens Synkrasis, Centiloquium.' },
+  'sys.kab.name':   { zh: '卡巴拉占星', en: 'Kabbalah Astrology' },
+  'sys.kab.desc':   { zh: '結合猶太神祕主義與占星術。生命之樹、二十二希伯來字母、塔羅大牌對應。', en: 'Combining Jewish mysticism with astrology. Tree of Life, 22 Hebrew letters, Major Arcana correspondences.' },
+  'sys.mazz.name':  { zh: '猶太 Mazzalot', en: 'Jewish Mazzalot' },
+  'sys.mazz.desc':  { zh: '源自 Talmud 與 Sefer Yetzirah 的猶太傳統黃道體系。大衛之星盤、十二支派、希伯來字母對應。', en: 'Jewish traditional zodiac system from the Talmud and Sefer Yetzirah. Star of David chart, 12 Tribes, Hebrew letter correspondences.' },
+  'sys.acg.name':   { zh: 'Astrocartography 地點占星', en: 'Astrocartography' },
+  'sys.acg.desc':   { zh: '行星位置投射至全球地圖，顯示 AC/MC/IC/DC 搬遷線。Plotly 互動地圖、過運搬遷線。', en: 'Planetary positions projected onto a world map, showing AC/MC/IC/DC relocation lines. Plotly interactive map, transit relocation lines.' },
+  'sys.vedic.name': { zh: '印度占星 Jyotish', en: 'Vedic Jyotish' },
+  'sys.vedic.desc': { zh: '古老印度占星體系。星座盤（南印度/北印度）、Vimshottari 大運、Ashtakavarga、Yogas、BPHS、16 Varga 分盤。', en: 'Ancient Indian astrology system. Rashi chart (South/North Indian), Vimshottari Dasha, Ashtakavarga, Yogas, BPHS, 16 Varga divisional charts.' },
+  'sys.nadi.name':  { zh: '納迪占星', en: 'Nadi Astrology' },
+  'sys.nadi.desc':  { zh: '三大脈輪、27 星宿、納迪宮分，印度古老預言系統。', en: 'Three major Nadis, 27 Nakshatras, Nadi Amsa divisions — an ancient Indian prophetic system.' },
+  'sys.jaim.name':  { zh: 'Jaimini 占星', en: 'Jaimini Astrology' },
+  'sys.jaim.desc':  { zh: 'Chara Karaka、Rashi Drishti、Argala、Arudha Pada、Chara Dasha。', en: 'Chara Karaka, Rashi Drishti, Argala, Arudha Pada, Chara Dasha.' },
+  'sys.sukk.name':  { zh: '宿曜道', en: 'Sukkayodo' },
+  'sys.sukk.desc':  { zh: '9 世紀由空海大師傳入日本。二十八宿、六曜、方盤排列。', en: 'Brought to Japan by Master Kūkai in the 9th century. 28 Lunar Mansions, Six Luminaries, square chart layout.' },
+  'sys.thai.name':  { zh: '泰國占星', en: 'Thai Astrology' },
+  'sys.thai.desc':  { zh: '以印度 Jyotish 為基礎，融合泰國佛教文化。泰式方盤、九宮格、พรหมชาติ 命理。', en: 'Based on Indian Jyotish, blended with Thai Buddhist culture. Thai square chart, Nine-Grid, Brahma-Jati destiny reading.' },
+  'sys.myan.name':  { zh: '緬甸 Mahabote', en: 'Myanmar Mahabote' },
+  'sys.myan.desc':  { zh: '緬甸獨特的星期制占星法。八方位、七宮、行星大運。', en: "Myanmar's unique weekday-based astrology. Eight directions, seven houses, planetary major periods." },
+  'sys.zurk.name':  { zh: '祖爾海', en: 'Zurkhai' },
+  'sys.zurk.desc':  { zh: '蒙古傳統占星術。12 生肖、五行、擇吉。', en: 'Mongolian traditional astrology. 12 animal signs, Five Elements, auspicious date selection.' },
+  'sys.bali.name':  { zh: '巴厘 Wariga', en: 'Balinese Wariga' },
+  'sys.bali.desc':  { zh: '巴厘島傳統曆法系統。Wuku 210天週期、Wewaran 九層週期、Neptu 數值、吉凶判斷。', en: 'Balinese traditional calendar system. Wuku 210-day cycle, Wewaran nine-layer cycle, Neptu values, fortune divination.' },
+  'sys.tib.name':   { zh: '藏傳時輪金剛', en: 'Tibetan Kalachakra' },
+  'sys.tib.desc':   { zh: 'Mewa 九宮、Parkha 八卦、五力系統、時輪金剛曼荼羅。', en: 'Mewa Nine-Grid, Parkha Eight Trigrams, Five Forces system, Kalachakra Mandala.' },
+  'sys.arab.name':  { zh: '阿拉伯占星', en: 'Arabic Astrology' },
+  'sys.arab.desc':  { zh: '源自中世紀伊斯蘭黃金時代。阿拉伯點、Picatrix 星體魔法、太陽知識大全、MS164 手稿。', en: "From the medieval Islamic Golden Age. Arabic Parts, Picatrix astral magic, Shams al-Ma'arif, MS164 manuscript." },
+  'sys.yem.name':   { zh: '也門占星', en: 'Yemeni Astrology' },
+  'sys.yem.desc':   { zh: '南阿拉伯半島古老傳統。28 月宿護符魔法、Anwāʼ 天氣預兆、Firdaria 週期。', en: 'Ancient tradition from the southern Arabian Peninsula. 28 lunar-mansion talisman magic, Anwāʼ weather omens, Firdaria periods.' },
+  'sys.maya.name':  { zh: '瑪雅占星', en: 'Maya Astrology' },
+  'sys.maya.desc':  { zh: '瓜地馬拉瑪雅文明的曆法與占星。Tzolkin 神聖曆、Haab 民用曆、Long Count 長紀年。', en: 'Calendrics and astrology of the Guatemalan Maya civilization. Tzolkin sacred calendar, Haab civil calendar, Long Count.' },
+  'sys.aztec.name': { zh: '阿茲特克占星', en: 'Aztec Astrology' },
+  'sys.aztec.desc': { zh: '阿茲特克文明曆法占星。Tonalpohualli 占卜曆、Trecena 13 天週期、守護神祇。', en: 'Aztec civilization calendar astrology. Tonalpohualli divinatory calendar, Trecena 13-day cycles, patron deities.' },
+  'sys.egypt.name': { zh: '古埃及十度區間', en: 'Egyptian Decans' },
+  'sys.egypt.desc': { zh: '36 Decans 十度區間、塔羅對應、Dendera 輪盤圖。', en: '36 Decans, Tarot correspondences, Dendera zodiac wheel.' },
+  'sys.bab.name':   { zh: '巴比倫占星', en: 'Babylonian Astrology' },
+  'sys.bab.desc':   { zh: 'MUL.APIN 星表、K.8538 星盤、Enūma Anu Enlil 預兆。', en: 'MUL.APIN star catalogue, K.8538 astrolabe, Enūma Anu Enlil omens.' },
+
+  'tag.sidereal':  { zh: '恆星黃道', en: 'Sidereal Zodiac' },
+  'tag.tropical':  { zh: '回歸黃道', en: 'Tropical Zodiac' },
+  'tag.lunar':     { zh: '農曆', en: 'Lunar Calendar' },
+  'tag.weekday':   { zh: '星期制', en: 'Weekday System' },
+  'tag.tibcal':    { zh: '藏曆', en: 'Tibetan Calendar' },
+  'tag.mayacal':   { zh: '瑪雅曆', en: 'Maya Calendar' },
+  'tag.azteccal':  { zh: '阿茲特克曆', en: 'Aztec Calendar' },
+  'tag.balical':   { zh: '巴厘曆', en: 'Balinese Calendar' },
+  'tag.6sub':      { zh: '六個子分頁', en: '6 Sub-tabs' },
+  'tag.5sub':      { zh: '五個子分頁', en: '5 Sub-tabs' },
+  'tag.8sub':      { zh: '八個子分頁', en: '8 Sub-tabs' },
+  'tag.14stars':   { zh: '十四主星', en: '14 Main Stars' },
+  'tag.18fly':     { zh: '十八飛星', en: '18 Flying Stars' },
+  'tag.28mansions':{ zh: '二十八宿', en: '28 Mansions' },
+  'tag.jupiter':   { zh: '木星分野', en: 'Jupiter Stations' },
+  'tag.sixrealms': { zh: '六道推演', en: 'Six Realms' },
+  'tag.treelife':  { zh: '生命之樹', en: 'Tree of Life' },
+  'tag.stardavid': { zh: '大衛之星', en: 'Star of David' },
+  'tag.imap':      { zh: '互動地圖', en: 'Interactive Map' },
+  'tag.9grid':     { zh: '九宮格', en: 'Nine-Grid' },
+  'tag.8dir':      { zh: '八方位', en: 'Eight Directions' },
+  'tag.auspic':    { zh: '擇吉', en: 'Auspicious Selection' },
+  'tag.mewa':      { zh: 'Mewa 九宮', en: 'Mewa Nine-Grid' },
+  'tag.lunartalis':{ zh: '月宿護符', en: 'Lunar Mansion Talismans' },
+  'tag.patron':    { zh: '守護神祇', en: 'Patron Deities' },
+  'tag.6lum':      { zh: '六曜', en: 'Six Luminaries' },
+  'tag.27nak':     { zh: '27 星宿', en: '27 Nakshatras' },
+  'tag.4k3z':      { zh: '四課三傳', en: 'Four Lessons & Three Transmissions' },
+  'tag.5pillar':   { zh: '五柱卦象', en: 'Five-Pillar Hexagrams' },
+  'tag.8gate9star': { zh: '八門九星', en: 'Eight Gates & Nine Stars' },
+  'tag.wuku':      { zh: 'Wuku 週期', en: 'Wuku Cycle' },
+
+  'tech.tag':   { zh: '🛠️ 技術棧 Tech Stack', en: '🛠️ Tech Stack' },
+  'tech.title': { zh: '可靠的技術基礎', en: 'Reliable Tech Foundation' },
+  'tech.desc':  { zh: '基於成熟的開源框架構建', en: 'Built on proven open-source frameworks' },
+
+  'cta.title':       { zh: '開始你的星象之旅', en: 'Begin Your Celestial Journey' },
+  'cta.desc':        { zh: '免費、開源、無需安裝——只需打開瀏覽器，即可使用全球最全面的多體系占星排盤平台。', en: 'Free, open-source, no installation required — just open your browser to access the world\'s most comprehensive multi-system astrology charting platform.' },
+  'cta.btn.start':   { zh: '🚀 立即使用 Start Now', en: '🚀 Start Now' },
+  'cta.btn.docs':    { zh: '📖 查看文檔 Documentation', en: '📖 Documentation' },
+  'cta.btn.sponsor': { zh: '💛 贊助支持 Sponsor', en: '💛 Sponsor' },
+
+  'footer.desc':   { zh: '二十九體系占星排盤平台 — 千年星學智慧，一鍵觸手可及。', en: '29-System Astrology Charting Platform — millennia of celestial wisdom at your fingertips.' },
+  'footer.author': { zh: '由 <a href="https://github.com/kentang2017" target="_blank" rel="noopener">kentang2017</a> 開發維護 &nbsp;·&nbsp; 微信：<strong>gnatnek</strong> &nbsp;·&nbsp; 公眾號：探究三式', en: 'Developed by <a href="https://github.com/kentang2017" target="_blank" rel="noopener">kentang2017</a> &nbsp;·&nbsp; WeChat: <strong>gnatnek</strong> &nbsp;·&nbsp; Official Account: 探究三式' },
+  'footer.link.use':      { zh: '線上使用', en: 'Use Online' },
+  'footer.link.projects': { zh: '所有專案', en: 'All Projects' },
+  'footer.link.sponsor':  { zh: '贊助支持', en: 'Sponsor' },
+
+  'title': { zh: '堅占星 Kin Astro — 二十九體系占星排盤平台', en: 'Kin Astro — 29-System Astrology Charting Platform' }
+};
+
+/* ── apply language ── */
+function applyLang(lang) {
+  document.querySelectorAll('[data-i18n]').forEach(function(el) {
+    var key = el.getAttribute('data-i18n');
+    if (translations[key] && translations[key][lang] !== undefined) {
+      el.textContent = translations[key][lang];
+    }
+  });
+  document.querySelectorAll('[data-i18n-html]').forEach(function(el) {
+    var key = el.getAttribute('data-i18n-html');
+    if (translations[key] && translations[key][lang] !== undefined) {
+      el.innerHTML = translations[key][lang];
+    }
+  });
+  document.querySelectorAll('[data-i18n-aria]').forEach(function(el) {
+    var key = el.getAttribute('data-i18n-aria');
+    if (translations[key] && translations[key][lang] !== undefined) {
+      el.setAttribute('aria-label', translations[key][lang]);
+    }
+  });
+  document.documentElement.lang = (lang === 'zh') ? 'zh-Hant' : 'en';
+  if (translations['title'] && translations['title'][lang]) {
+    document.title = translations['title'][lang];
+  }
+  localStorage.setItem('site-lang', lang);
+  var btn = document.getElementById('langToggle');
+  if (btn) {
+    btn.textContent = (lang === 'zh') ? 'EN' : '中';
+    btn.setAttribute('aria-label', (lang === 'zh') ? 'Switch to English' : '切換至中文');
+  }
+}
+
+/* ── toggle language ── */
+function toggleLang() {
+  var current = localStorage.getItem('site-lang') || 'zh';
+  applyLang(current === 'zh' ? 'en' : 'zh');
+}
+
+/* ── init on load ── */
+(function() {
+  var lang = localStorage.getItem('site-lang') || 'zh';
+  applyLang(lang);
+})();
 </script>
 
 </body>
