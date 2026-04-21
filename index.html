@@ -1322,7 +1322,7 @@ function toggleLang() {
   var shootingStars = [];
   var W, H;
 
-  function resize() {
+  var PIXELS_PER_STAR = 6000;
     W = canvas.width  = window.innerWidth;
     H = canvas.height = window.innerHeight;
   }
@@ -1331,7 +1331,7 @@ function toggleLang() {
 
   function initStars() {
     stars = [];
-    var count = Math.floor((W * H) / 6000);
+    var count = Math.floor((W * H) / PIXELS_PER_STAR);
     for (var i = 0; i < count; i++) {
       stars.push({
         x: rand(0, W),
@@ -1400,11 +1400,15 @@ function toggleLang() {
     requestAnimationFrame(draw);
   }
 
+  function scheduleNextShooting() {
+    setTimeout(function () { spawnShooting(); scheduleNextShooting(); }, rand(2500, 5000));
+  }
+
   resize();
   initStars();
   window.addEventListener('resize', function () { resize(); initStars(); });
 
-  setInterval(spawnShooting, rand(2500, 5000));
+  scheduleNextShooting();
   setTimeout(spawnShooting, 1200);
 
   draw();
